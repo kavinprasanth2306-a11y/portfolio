@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     animate(z, activeIndex * 1000, {
       type: "tween",
-      duration: 1.6,
+      duration: 1.0,
       ease: [0.36, 1, 0.36, 1] // Custom smooth easing
     })
   }, [activeIndex, z])
@@ -206,12 +206,12 @@ function App() {
                   style={{ z }} 
                   className="w-full h-full scene-content absolute inset-0"
                 >
-                  <ShatterSection z={z} index={0}><Hero /></ShatterSection>
-                  <ShatterSection z={z} index={1}><About /></ShatterSection>
-                  <ShatterSection z={z} index={2}><Skills /></ShatterSection>
-                  <ShatterSection z={z} index={3}><Certificates /></ShatterSection>
-                  <ShatterSection z={z} index={4}><Projects /></ShatterSection>
-                  <ShatterSection z={z} index={5}><Contact /></ShatterSection>
+                  <ShatterSection z={z} index={0} activeIndex={activeIndex}><Hero /></ShatterSection>
+                  <ShatterSection z={z} index={1} activeIndex={activeIndex}><About /></ShatterSection>
+                  <ShatterSection z={z} index={2} activeIndex={activeIndex}><Skills /></ShatterSection>
+                  <ShatterSection z={z} index={3} activeIndex={activeIndex}><Certificates /></ShatterSection>
+                  <ShatterSection z={z} index={4} activeIndex={activeIndex}><Projects /></ShatterSection>
+                  <ShatterSection z={z} index={5} activeIndex={activeIndex}><Contact /></ShatterSection>
                 </motion.div>
               </div>
             </div>

@@ -24,9 +24,9 @@ export default function Contact() {
           Drop a message and I'll get back to you soon.
         </p>
 
-        <a href="mailto:kavinkm@example.com" 
+        <a href="mailto:kavinprasanth2306@gmail.com" 
           className="relative group px-12 py-6 bg-[var(--text-primary)] text-[var(--bg-primary)] font-bold rounded-full hover:scale-105 transition-all duration-500 text-xl mb-16 overflow-hidden shadow-2xl">
-          <span className="relative z-10">kavinkm@example.com</span>
+          <span className="relative z-10">kavinprasanth2306@gmail.com</span>
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <span className="absolute inset-0 z-0 bg-white/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
           <span className="relative z-10 group-hover:text-white transition-colors duration-500 absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100">kavinkm@example.com</span>
