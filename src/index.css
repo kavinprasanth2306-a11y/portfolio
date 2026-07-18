@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #f0f2f5;
+    --text-primary: #0a0a0b;
+    --text-secondary: #52525b;
+    --glass-bg: #ffffff;
+    --glass-border: #e4e4e7;
+    --glass-shadow: rgba(0, 0, 0, 0.05);
+    --accent-glow: rgba(56, 189, 248, 0.1);
+  }
+
+  .dark {
+    --bg-primary: #030305; /* Ultra deep space black */
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --glass-bg: #0f0f14; /* Solid dark background */
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: rgba(0, 0, 0, 0.6);
+    --accent-glow: rgba(129, 140, 248, 0.15); /* Indigo glow */
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    @apply font-sans antialiased transition-colors duration-700 overflow-x-hidden;
+  }
+  
+  /* Rich, atmospheric gradient background */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: 
+      radial-gradient(circle at 0% 0%, var(--accent-glow) 0%, transparent 40%),
+      radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.08) 0%, transparent 40%);
+    @apply transition-colors duration-1000;
+  }
+  
+  ::selection { @apply bg-cyan-500/30 text-current; }
+}
+
+@layer components {
+  .glass-panel {
+    background-color: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 var(--glass-shadow);
+  }
+
+  .glass-card {
+    @apply glass-panel rounded-3xl overflow-hidden relative;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  /* Adding a subtle inner glow on hover for premium feel */
+  .glass-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent 50%, rgba(255,255,255,0.02));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.5;
+    transition: opacity 0.5s ease;
+  }
+
+  .glass-card:hover {
+    box-shadow: 0 16px 48px 0 var(--glass-shadow), 0 0 20px 0 var(--accent-glow);
+    transform: translateY(-2px);
+  }
+  
+  .glass-card:hover::before {
+    opacity: 1;
+  }
+
+  /* 3D Scene Utilities - Kept intact for the Z-Axis layout */
+  .scene-container {
+    perspective: 1500px;
+    transform-style: preserve-3d;
+  }
+  
+  .scene-content {
+    transform-style: preserve-3d;
+  }
+  
+  /* Text gradient utility */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400;
+  }
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background-color: var(--text-secondary); @apply rounded-full opacity-20 transition-opacity duration-300; }
+::-webkit-scrollbar-thumb:hover { @apply opacity-50; }

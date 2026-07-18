@@ -1,0 +1,222 @@
+import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { HiArrowRight, HiX } from 'react-icons/hi'
+import { GlassCracks, getCrackMask } from './Skills'
+
+const projectsData = [
+  {
+    title: 'Dmpkart',
+    accent: '#38bdf8', // sky-400
+    mockup: 'https://placehold.co/800x450/0f172a/38bdf8?text=Dmpkart',
+    context: 'A comprehensive e-commerce platform designed for seamless shopping experiences and robust merchant management.',
+    challenge: 'Managing real-time state with Shopify integrations while keeping the mobile experience perfectly fluid.',
+    outcome: 'Improved perceived load times by 40% and increased mobile conversion rates significantly.',
+    link: '#',
+    tech: ["React", "Shopify", "Tailwind"],
+    monogram: "Dm",
+    glow: "bg-sky-500"
+  },
+  {
+    title: 'ARES Exoskeleton',
+    accent: '#818cf8', // indigo-400
+    mockup: 'https://placehold.co/800x450/0f172a/818cf8?text=ARES',
+    context: 'A biomechanical exoskeleton designed to assist with heavy lifting and reduce workplace injuries.',
+    challenge: 'Bridging the gap between software motor control and physical hardware responsiveness.',
+    outcome: 'Achieved a sub-50ms response time.',
+    link: '#',
+    tech: ["C++", "ROS", "Hardware"],
+    monogram: "AR",
+    glow: "bg-indigo-500"
+  },
+  {
+    title: "Ion Core",
+    accent: '#f43f5e',
+    mockup: 'https://placehold.co/800x450/0f172a/f43f5e?text=Ion+Core',
+    context: "A blazingly fast, visually stunning dashboard for monitoring high frequency trading algorithms.",
+    challenge: "Processing millions of data points per second without locking the UI thread.",
+    outcome: "Zero dropped frames at 60fps.",
+    link: "#",
+    tech: ["Rust", "WASM", "React", "WebSocket"],
+    monogram: "Io",
+    glow: "bg-rose-500"
+  },
+  {
+    title: "Nebula DB",
+    accent: '#06b6d4',
+    mockup: 'https://placehold.co/800x450/0f172a/06b6d4?text=Nebula',
+    context: "An interactive, 3D force-directed graph visualization tool designed to make navigating massive databases intuitive and beautiful.",
+    challenge: "Rendering 10,000+ nodes smoothly in the browser.",
+    outcome: "Built a custom WebGL renderer.",
+    link: "#",
+    tech: ["D3.js", "WebGL", "Firebase"],
+    monogram: "Nd",
+    glow: "bg-cyan-500"
+  }
+]
+
+export default function Projects() {
+  const [selectedProject, setSelectedProject] = useState(null)
+
+  return (
+    <div className="w-full min-h-screen bg-[var(--bg-secondary)] relative flex flex-col items-center justify-center p-4 md:p-8 overflow-hidden">
+      
+      {/* Background Decor */}
+      <div className="absolute -top-[10%] -right-[10%] w-[40vw] h-[40vw] rounded-full bg-[var(--accent-glow)] blur-[150px] opacity-20 pointer-events-none" />
+      <div className="absolute top-[40%] -left-[10%] w-[30vw] h-[30vw] rounded-full bg-teal-500 blur-[150px] opacity-10 pointer-events-none" />
+
+      <div 
+        className="w-full max-w-7xl h-[95vh] flex flex-col relative z-10 overflow-y-auto custom-scrollbar rounded-3xl pb-20"
+        data-lenis-prevent="true"
+      >
+        <div className="sticky top-0 z-30 pt-12 pb-6 bg-[var(--bg-secondary)]/90 backdrop-blur-xl border-b border-[var(--glass-border)] mb-12 px-4 md:px-10">
+          <h2 className="text-4xl md:text-6xl font-bold text-[var(--text-primary)] mb-4 uppercase tracking-tighter">
+            Featured <span className="text-teal-400">Work</span>
+          </h2>
+          <div className="w-24 h-1 bg-[var(--glass-border)] rounded-full" />
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 md:px-10">
+          {projectsData.map((project, idx) => (
+            <motion.div 
+              key={project.title}
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+              onClick={() => setSelectedProject(project)}
+              className="relative overflow-hidden cursor-pointer group flex flex-col h-[280px] border border-[var(--glass-border)] bg-[var(--glass-bg)] backdrop-blur-xl shadow-xl dark:shadow-2xl"
+              style={{
+                boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.1), inset 0 -4px 10px rgba(0,0,0,0.1), 0 10px 30px rgba(0,0,0,0.1)',
+                borderRadius: idx % 2 === 0 ? '2rem 0.5rem 2rem 0.5rem' : '0.5rem 2rem 0.5rem 2rem',
+                WebkitMaskImage: getCrackMask(idx),
+                WebkitMaskSize: '100% 100%'
+              }}
+            >
+              <GlassCracks index={idx} />
+              
+              {/* Project Image Area */}
+              <div className="w-full h-1/2 relative overflow-hidden z-10 bg-black/5">
+                 {/* Hover Glow */}
+                 <div className={`absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-700 mix-blend-overlay ${project.glow}`} />
+                 
+                 <img 
+                    src={project.mockup} 
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                 />
+                 
+                 {/* Tech Stack Pills (Simplified for smaller card) */}
+                 <div className="absolute top-2 right-2 flex gap-1">
+                    {project.tech.slice(0, 1).map((t, i) => (
+                      <span key={i} className="px-2 py-0.5 text-[8px] font-bold tracking-widest uppercase bg-black/40 text-white backdrop-blur-md rounded-full border border-white/10">
+                        {t}
+                      </span>
+                    ))}
+                 </div>
+              </div>
+
+              {/* Project Info Area */}
+              <div className="w-full h-1/2 p-5 relative z-20 flex flex-col justify-center bg-[var(--bg-secondary)]/60 backdrop-blur-md border-t border-[var(--glass-border)]">
+                <div className="absolute top-0 left-0 w-full h-[2px] opacity-80 transition-opacity duration-300 group-hover:opacity-100" style={{ backgroundColor: project.accent }}></div>
+                
+                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1 tracking-tight group-hover:text-teal-500 transition-colors duration-300 line-clamp-1">
+                  {project.title}
+                </h3>
+                <p className="text-[var(--text-secondary)] text-xs line-clamp-2 leading-relaxed mb-3">
+                  {project.context}
+                </p>
+                
+                <div className="mt-auto flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[var(--text-primary)] opacity-70 group-hover:opacity-100 translate-x-[-5px] group-hover:translate-x-0 transition-all duration-300">
+                  View Details <HiArrowRight />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Project Details Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/60 backdrop-blur-xl"
+            onClick={() => setSelectedProject(null)}
+            onWheel={(e) => e.stopPropagation()}
+          >
+            <motion.div 
+              initial={{ y: 50, scale: 0.95, opacity: 0 }}
+              animate={{ y: 0, scale: 1, opacity: 1 }}
+              exit={{ y: 20, scale: 0.95, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
+              className="glass-card w-full max-w-5xl max-h-[90vh] overflow-y-auto custom-scrollbar relative flex flex-col lg:flex-row border border-[var(--glass-border)] rounded-3xl bg-[var(--bg-primary)] shadow-2xl"
+              data-lenis-prevent="true"
+            >
+              <button 
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors backdrop-blur-md border border-white/10"
+              >
+                <HiX size={20} />
+              </button>
+
+              <div className="w-full lg:w-1/2 h-64 lg:h-auto relative bg-black/20">
+                <div 
+                  className="absolute inset-0 blur-3xl opacity-20"
+                  style={{ backgroundColor: selectedProject.accent }}
+                ></div>
+                <img 
+                  src={selectedProject.mockup} 
+                  className="w-full h-full object-cover relative z-10" 
+                  alt={selectedProject.title} 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[var(--bg-primary)] z-10"></div>
+              </div>
+
+              <div className="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col gap-8 relative z-10">
+                <div>
+                  <h3 className="font-display text-4xl lg:text-5xl font-bold mb-4 drop-shadow-md" style={{ color: selectedProject.accent }}>
+                    {selectedProject.title}
+                  </h3>
+                  <p className="font-sans text-base lg:text-lg text-[var(--text-secondary)] font-light leading-relaxed">
+                    {selectedProject.context}
+                  </p>
+                </div>
+                
+                <div className="flex flex-col gap-6">
+                  <div className="flex flex-col gap-3 p-5 rounded-2xl bg-[var(--text-primary)]/5 border border-[var(--glass-border)] backdrop-blur-md relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-1 h-full" style={{ backgroundColor: selectedProject.accent, opacity: 0.5 }}></div>
+                    <h4 className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--text-secondary)]">The Challenge</h4>
+                    <p className="font-sans text-sm text-[var(--text-primary)] font-light leading-relaxed">
+                      {selectedProject.challenge}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col gap-3 p-5 rounded-2xl bg-[var(--text-primary)]/5 border border-[var(--glass-border)] backdrop-blur-md relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-1 h-full bg-cyan-500/50"></div>
+                    <h4 className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--text-secondary)]">The Outcome</h4>
+                    <p className="font-sans text-sm text-[var(--text-primary)] font-light leading-relaxed">
+                      {selectedProject.outcome}
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="mt-auto pt-8">
+                  <a href={selectedProject.link} target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 font-sans text-sm uppercase tracking-[0.2em] font-bold transition-all hover:gap-5 group/btn"
+                    style={{ color: selectedProject.accent }}
+                  >
+                    View Live Project 
+                    <span className="w-10 h-10 rounded-full bg-[var(--text-primary)]/5 flex items-center justify-center border border-[var(--glass-border)] group-hover/btn:bg-[var(--text-primary)]/10 transition-colors">
+                      <HiArrowRight className="transition-transform group-hover/btn:translate-x-1" />
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
