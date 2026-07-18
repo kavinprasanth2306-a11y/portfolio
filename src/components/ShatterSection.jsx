@@ -43,7 +43,7 @@ export default function ShatterSection({ children, z, index }) {
       
       {/* Main Section Content */}
       <motion.div 
-        style={{ opacity: contentOpacity, scale: contentScale, filter: contentBlur }}
+        style={{ opacity: contentOpacity, scale: contentScale, filter: contentBlur, willChange: 'transform, opacity, filter' }}
         className="w-full h-full"
       >
         {children}
@@ -72,7 +72,7 @@ export default function ShatterSection({ children, z, index }) {
               marginLeft: '-5rem', // Center the shape initially
               marginTop: '-5rem',
               pointerEvents: 'none', // Don't block clicks when not shattered
-              backdropFilter: 'blur(16px)'
+              willChange: 'transform, opacity' // Hardware acceleration hint
             }}
           />
         )
