@@ -25,26 +25,26 @@ export default function Certificates() {
           Key <span className="text-[#D4AF37]">Certifications</span>
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-2 gap-3 md:gap-8 px-2 md:px-0">
           {certsData.map((cert, i) => (
             <motion.div
               key={i}
               whileHover={{ scale: 1.02, y: -5 }}
               transition={{ duration: 0.3 }}
-              className="flex flex-col items-center justify-center p-10 border border-[var(--glass-border)] bg-[var(--glass-bg)] hover:bg-[var(--glass-bg)]/80 transition-colors group backdrop-blur-sm relative overflow-hidden"
+              className="flex flex-col items-center justify-center p-4 md:p-10 border border-[var(--glass-border)] bg-[var(--glass-bg)] hover:bg-[var(--glass-bg)]/80 transition-colors group backdrop-blur-sm relative overflow-hidden"
               style={{
-                borderRadius: i % 2 === 0 ? '2.5rem 0.5rem 2.5rem 0.5rem' : '0.5rem 2.5rem 0.5rem 2.5rem',
+                borderRadius: i % 2 === 0 ? '1.5rem 0.25rem 1.5rem 0.25rem' : '0.25rem 1.5rem 0.25rem 1.5rem',
                 WebkitMaskImage: getCrackMask(i),
                 WebkitMaskSize: '100% 100%'
               }}
             >
               <GlassCracks index={i} />
               
-              <HiCheckBadge className="text-[#D4AF37] mb-6 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all relative z-10" size={50} />
-              <h3 className="text-lg md:text-xl font-bold text-[var(--text-primary)] text-center relative z-10 mb-3 leading-snug">
+              <HiCheckBadge className="text-[#D4AF37] mb-2 md:mb-6 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all relative z-10 text-3xl md:text-[50px]" />
+              <h3 className="text-[10px] md:text-xl font-bold text-[var(--text-primary)] text-center relative z-10 mb-1 md:mb-3 leading-snug">
                 {cert.title}
               </h3>
-              <p className="text-sm text-[#D4AF37] uppercase tracking-widest font-semibold relative z-10 text-center">
+              <p className="text-[7px] md:text-sm text-[#D4AF37] uppercase tracking-widest font-semibold relative z-10 text-center">
                 {cert.issuer}
               </p>
             </motion.div>

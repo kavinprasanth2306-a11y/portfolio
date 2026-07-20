@@ -119,26 +119,27 @@ export default function Skills() {
         ARSENAL
       </div>
 
+
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col h-full justify-center">
         <h2 className="text-4xl md:text-6xl font-bold text-[var(--text-primary)] mb-12 uppercase tracking-tighter">
           Tech <span className="text-teal-400">Stack</span>
         </h2>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 md:px-10 pb-32">
+        <div className="grid grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6 px-2 md:px-10 pb-16 md:pb-32">
           {skillsData.map((skill, idx) => (
             <motion.div 
               key={skill.name}
               whileHover={{ y: -5, scale: 1.02 }}
-              className="glass-card relative flex flex-col items-center justify-center p-8 border border-[var(--glass-border)] bg-[var(--glass-bg)] backdrop-blur-md group overflow-hidden cursor-pointer"
+              className="glass-card relative flex flex-col items-center justify-center p-3 md:p-8 border border-[var(--glass-border)] bg-[var(--glass-bg)] backdrop-blur-md group overflow-hidden cursor-pointer h-24 md:h-auto"
               style={{
-                 borderRadius: idx % 2 === 0 ? '2rem 0.5rem 2rem 0.5rem' : '0.5rem 2rem 0.5rem 2rem',
+                 borderRadius: idx % 2 === 0 ? '1rem 0.25rem 1rem 0.25rem' : '0.25rem 1rem 0.25rem 1rem',
                  WebkitMaskImage: getCrackMask(idx),
                  WebkitMaskSize: '100% 100%'
               }}
             >
               <GlassCracks index={idx} />
-              <skill.icon className="text-5xl mb-4 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 relative z-10" style={{ color: skill.color }} />
-              <span className="font-sans font-bold tracking-widest text-xs uppercase text-[var(--text-primary)] opacity-70 group-hover:opacity-100 transition-opacity relative z-10">
+              <skill.icon className="text-2xl md:text-5xl mb-2 md:mb-4 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 relative z-10" style={{ color: skill.color }} />
+              <span className="font-sans font-bold tracking-widest text-[8px] md:text-xs uppercase text-[var(--text-primary)] opacity-70 group-hover:opacity-100 transition-opacity relative z-10 text-center leading-tight">
                 {skill.name}
               </span>
             </motion.div>

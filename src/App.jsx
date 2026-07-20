@@ -47,6 +47,7 @@ function App() {
 
   // Handle discrete scroll transitions
   useEffect(() => {
+    
     let touchStartY = 0
     let momentumTimeout = null
     let isMomentumLocked = false

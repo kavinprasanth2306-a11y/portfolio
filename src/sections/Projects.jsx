@@ -75,7 +75,7 @@ export default function Projects() {
           <div className="w-24 h-1 bg-[var(--glass-border)] rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 md:px-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 px-2 md:px-10">
           {projectsData.map((project, idx) => (
             <motion.div 
               key={project.title}
@@ -182,7 +182,6 @@ export default function Projects() {
                     {selectedProject.context}
                   </p>
                 </div>
-                
                 <div className="flex flex-col gap-6">
                   <div className="flex flex-col gap-3 p-5 rounded-2xl bg-[var(--text-primary)]/5 border border-[var(--glass-border)] backdrop-blur-md relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-1 h-full" style={{ backgroundColor: selectedProject.accent, opacity: 0.5 }}></div>
