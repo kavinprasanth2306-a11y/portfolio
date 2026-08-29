@@ -3,14 +3,6 @@ import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 
 export default function Hero() {
-  const handleScrollToProjects = (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: window.innerHeight * 2,
-      behavior: 'smooth'
-    });
-  };
-
   return (
     <div className="w-full h-full flex flex-col items-center justify-center relative p-8">
       
@@ -60,16 +52,19 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1.2 }}
           className="flex flex-wrap items-center justify-center gap-6 mt-4"
         >
-          <a href="#projects" onClick={handleScrollToProjects} 
+          <button 
+            onClick={() => window.dispatchEvent(new CustomEvent('navigate-section', { detail: 5 }))}
             className="px-10 py-5 rounded-full bg-[var(--text-primary)] text-[var(--bg-primary)] font-bold text-sm uppercase tracking-wider hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all duration-300">
             Explore Work
-          </a>
+          </button>
           <div className="flex gap-4">
             <a href="https://github.com/kavinprasanth2306-a11y" target="_blank" rel="noopener noreferrer"
+              aria-label="GitHub profile"
               className="w-14 h-14 rounded-full border border-[var(--glass-border)] bg-[var(--glass-bg)] flex items-center justify-center text-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] hover:scale-110 transition-all duration-300 shadow-lg">
               <FaGithub size={22} />
             </a>
             <a href="https://linkedin.com/in/Kavinprasanthkm" target="_blank" rel="noopener noreferrer"
+              aria-label="LinkedIn profile"
               className="w-14 h-14 rounded-full border border-[var(--glass-border)] bg-[var(--glass-bg)] flex items-center justify-center text-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] hover:scale-110 transition-all duration-300 shadow-lg">
               <FaLinkedinIn size={22} />
             </a>

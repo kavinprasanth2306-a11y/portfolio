@@ -16,7 +16,7 @@
   .dark {
     --bg-primary: #030305; /* Ultra deep space black */
     --text-primary: #ffffff;
-    --text-secondary: #a1a1aa;
+    --text-secondary: #b0b0b8; /* Brightened from a1a1aa for better contrast */
     --glass-bg: #0f0f14; /* Solid dark background */
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-shadow: rgba(0, 0, 0, 0.6);
@@ -26,7 +26,7 @@
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    @apply font-sans antialiased transition-colors duration-700 overflow-x-hidden;
+    @apply font-sans antialiased leading-relaxed transition-colors duration-700 overflow-x-hidden;
   }
   
   /* Rich, atmospheric gradient background */
@@ -95,6 +95,19 @@
   /* Text gradient utility */
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400;
+  }
+
+  /* Pop utility for headings on glass */
+  .text-shadow-glow {
+    text-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+  }
+
+  .nav-glass {
+    @apply fixed top-4 left-4 right-4 z-50 px-6 py-3 rounded-2xl;
+    background-color: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px var(--glass-shadow);
+    backdrop-filter: blur(20px);
   }
 }
 

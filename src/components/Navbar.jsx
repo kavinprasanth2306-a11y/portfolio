@@ -5,8 +5,9 @@ import { HiMoon, HiSun } from 'react-icons/hi'
 const navLinks = [
   { name: 'About', target: 1 },
   { name: 'Skills', target: 2 },
-  { name: 'Work', target: 4 },
-  { name: 'Contact', target: 5 },
+  { name: 'Journey', target: 4 },
+  { name: 'Work', target: 5 },
+  { name: 'Contact', target: 6 },
 ]
 
 export default function Navbar({ theme, toggleTheme, setActiveIndex }) {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { HiArrowRight, HiX } from 'react-icons/hi'
 import { GlassCracks, getCrackMask } from './Skills'
@@ -56,6 +56,25 @@ const projectsData = [
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null)
+  const closeButtonRef = useRef(null)
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && selectedProject) {
+        setSelectedProject(null)
+      }
+    }
+    
+    if (selectedProject) {
+      window.addEventListener('keydown', handleKeyDown)
+      // Auto-focus the close button when modal opens for accessibility
+      setTimeout(() => {
+        closeButtonRef.current?.focus()
+      }, 100)
+    }
+
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [selectedProject])
 
   return (
     <div className="w-full min-h-screen bg-[var(--bg-secondary)] relative flex flex-col items-center justify-center p-4 md:p-8 overflow-hidden">
@@ -154,10 +173,12 @@ export default function Projects() {
               data-lenis-prevent="true"
             >
               <button 
+                ref={closeButtonRef}
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors backdrop-blur-md border border-white/10"
+                className="absolute top-4 right-4 z-20 w-12 h-12 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-black/40 text-white hover:bg-black/60 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-colors backdrop-blur-md border border-white/10"
+                aria-label="Close modal"
               >
-                <HiX size={20} />
+                <HiX size={24} />
               </button>
 
               <div className="w-full lg:w-1/2 h-64 lg:h-auto relative bg-black/20">
