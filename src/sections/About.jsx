@@ -39,29 +39,29 @@ export default function About() {
         <div className="w-full md:flex-[0.8] grid grid-cols-12 gap-2 md:gap-4 h-[180px] sm:h-[220px] md:h-[400px]">
           <BentoBox colSpan={6} rowSpan={2} delay={0.1} className="bg-gradient-to-br from-[var(--glass-bg)] to-cyan-900/10">
             <div className="flex flex-col items-center justify-center text-center h-full">
-              <p className="font-display text-3xl sm:text-4xl md:text-7xl font-light text-[var(--text-primary)] mb-1 md:mb-2 drop-shadow-md">4+</p>
+              <p className="font-display text-3xl sm:text-4xl md:text-7xl font-light text-[var(--text-primary)] mb-1 md:mb-2 drop-shadow-md">10+</p>
               <p className="text-[8px] sm:text-[9px] md:text-xs text-cyan-400 uppercase tracking-[2px] md:tracking-[4px] font-semibold">Projects</p>
             </div>
           </BentoBox>
           
           <BentoBox colSpan={6} rowSpan={1} delay={0.2} className="bg-gradient-to-br from-[var(--glass-bg)] to-indigo-900/10">
             <div className="flex flex-col items-center justify-center text-center h-full">
-              <p className="font-display text-2xl sm:text-3xl md:text-5xl font-light text-[var(--text-primary)] mb-0 md:mb-1">5+</p>
+              <p className="font-display text-2xl sm:text-3xl md:text-5xl font-light text-[var(--text-primary)] mb-0 md:mb-1">8+</p>
               <p className="text-[7px] sm:text-[8px] md:text-[10px] text-indigo-400 uppercase tracking-[1px] md:tracking-[3px] font-bold">Tech Stack</p>
             </div>
           </BentoBox>
 
           <BentoBox colSpan={6} rowSpan={1} delay={0.3} className="bg-[var(--glass-bg)]">
             <div className="flex flex-col items-center justify-center text-center h-full">
-              <p className="font-display text-2xl sm:text-3xl md:text-5xl font-light text-[var(--text-primary)] mb-0 md:mb-1">4</p>
+              <p className="font-display text-2xl sm:text-3xl md:text-5xl font-light text-[var(--text-primary)] mb-0 md:mb-1">18</p>
               <p className="text-[7px] sm:text-[8px] md:text-[10px] text-[var(--text-secondary)] uppercase tracking-[1px] md:tracking-[3px] font-bold">Certifications</p>
             </div>
           </BentoBox>
 
           <BentoBox colSpan={12} rowSpan={1} delay={0.4} className="bg-gradient-to-r from-[var(--glass-bg)] to-cyan-900/20">
             <div className="flex flex-row items-center justify-center gap-3 md:gap-6 h-full text-center">
-              <p className="font-display text-2xl sm:text-4xl md:text-5xl font-light text-[var(--text-primary)]">50+</p>
-              <p className="text-[8px] sm:text-[10px] md:text-sm text-cyan-300 uppercase tracking-[2px] md:tracking-[5px] font-semibold">People Helped</p>
+              <p className="font-display text-2xl sm:text-4xl md:text-5xl font-light text-[var(--text-primary)]">1</p>
+              <p className="text-[8px] sm:text-[10px] md:text-sm text-cyan-300 uppercase tracking-[2px] md:tracking-[5px] font-semibold">GCP Certified</p>
             </div>
           </BentoBox>
         </div>

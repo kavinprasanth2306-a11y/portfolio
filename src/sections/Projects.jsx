@@ -5,15 +5,15 @@ import { GlassCracks, getCrackMask } from './Skills'
 
 const projectsData = [
   {
-    title: 'AYLA',
+    title: 'Wazabi',
     accent: '#818cf8',
-    mockup: 'https://placehold.co/800x450/0f0a1f/818cf8?text=AYLA',
-    context: 'AI-powered Indian fashion styling & tailoring assistant — from silhouette to stitch, designed on you.',
-    challenge: 'Integrating AI body measurement from photos, 3D garment visualization, and generating tailor-ready PDF patterns with precise measurements.',
-    outcome: 'Built a complete Flutter app with image picker, 3D model viewer, AI styling recommendations, and exportable PDF measurement sheets.',
-    link: 'https://github.com/kavinprasanth2306-a11y',
-    tech: ["Flutter", "AI/ML", "3D Models", "PDF"],
-    monogram: "AY",
+    mockup: '/projects/wazabi.png',
+    context: 'A full-stack premium e-commerce platform with product catalog, cart, wishlist, Razorpay payments, admin dashboard, and user authentication.',
+    challenge: 'Building a complete shopping experience with JWT auth, SQLite database, Razorpay payment integration, admin product management, and responsive mobile-first design.',
+    outcome: 'Live e-commerce site with auth (login/register), cart & checkout flow, Razorpay payments, admin dashboard with analytics, wishlist, and search — all production-ready.',
+    link: 'https://wazabi.in',
+    tech: ["React", "TypeScript", "Express", "Razorpay"],
+    monogram: "WZ",
     glow: "bg-indigo-500"
   },
   {
@@ -231,7 +231,7 @@ export default function Projects() {
                       className="inline-flex items-center gap-3 font-sans text-xs md:text-sm uppercase tracking-[0.2em] font-bold transition-all hover:gap-5 group/btn"
                       style={{ color: selectedProject.accent }}
                     >
-                      View on GitHub
+                      {selectedProject.link.includes('github') ? 'View on GitHub' : 'Visit Website'}
                       <span className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[var(--text-primary)]/5 flex items-center justify-center border border-[var(--glass-border)] group-hover/btn:bg-[var(--text-primary)]/10 transition-colors">
                         <HiArrowRight className="transition-transform group-hover/btn:translate-x-1" />
                       </span>
