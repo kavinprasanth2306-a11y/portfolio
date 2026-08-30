@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { HiAcademicCap, HiDownload, HiBriefcase } from 'react-icons/hi'
+import { HiAcademicCap, HiDownload, HiBadgeCheck } from 'react-icons/hi'
+import { SiGooglecloud, SiPython, SiGit } from 'react-icons/si'
 
 const timelineData = [
   {
@@ -13,21 +14,39 @@ const timelineData = [
   },
   {
     type: 'cert',
-    title: 'Deep Learning with PyTorch: Zero to GANs',
-    org: 'Jovian',
-    period: '2024',
-    description: 'Mastered neural networks, CNNs, GANs, and transfer learning using PyTorch.',
-    icon: HiAcademicCap,
-    color: '#06b6d4',
+    title: 'Google Cloud Digital Leader',
+    org: 'Google Cloud',
+    period: 'May 2026',
+    description: 'Certified in cloud concepts, Google Cloud products, and digital transformation strategies. Valid until May 2029.',
+    icon: SiGooglecloud,
+    color: '#4285F4',
   },
   {
     type: 'cert',
-    title: 'Certified Ethical Hacker (CEH) Prep',
-    org: 'EC-Council',
-    period: '2024',
-    description: 'Network security, penetration testing, and vulnerability assessment fundamentals.',
-    icon: HiBriefcase,
-    color: '#2e8b57',
+    title: 'Python Programming Track (6 Courses)',
+    org: 'DataCamp',
+    period: 'Jan 2026',
+    description: 'Completed Introduction to Python, Intermediate Python, Data Types in Python, Python Toolbox, and Python Programming Fundamentals (13 hrs).',
+    icon: SiPython,
+    color: '#3776AB',
+  },
+  {
+    type: 'cert',
+    title: 'Git & GitHub Track (7 Courses)',
+    org: 'DataCamp',
+    period: 'Jan 2026',
+    description: 'Completed Introduction to Git, Intermediate Git, Advanced Git, Git Fundamentals, GitHub Foundations, Introduction to GitHub, and Intermediate GitHub Concepts.',
+    icon: SiGit,
+    color: '#F05032',
+  },
+  {
+    type: 'cert',
+    title: 'MATLAB Onramp',
+    org: 'MathWorks',
+    period: 'Jan 2026',
+    description: 'Completed the self-paced MATLAB fundamentals course with 100% completion.',
+    icon: HiBadgeCheck,
+    color: '#0076A8',
   },
 ]
 
@@ -62,7 +81,7 @@ export default function Experience() {
           {/* Vertical line */}
           <div className="absolute left-3 md:left-6 top-0 bottom-0 w-[1px] bg-gradient-to-b from-[var(--glass-border)] via-cyan-500/30 to-[var(--glass-border)]"></div>
 
-          <div className="flex flex-col gap-3 md:gap-6">
+          <div className="flex flex-col gap-3 md:gap-5">
             {timelineData.map((item, i) => {
               const Icon = item.icon
               return (
@@ -83,8 +102,8 @@ export default function Experience() {
                   </div>
 
                   {/* Content card */}
-                  <div className="glass-card p-4 md:p-8 group-hover:shadow-lg transition-shadow duration-300">
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mb-1.5 md:mb-2">
+                  <div className="glass-card p-4 md:p-6 group-hover:shadow-lg transition-shadow duration-300">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mb-1 md:mb-2">
                       <div className="flex items-center gap-1.5 md:gap-2">
                         <Icon size={14} style={{ color: item.color }} />
                         <span className="text-[8px] md:text-[10px] uppercase tracking-[2px] md:tracking-[3px] font-bold" style={{ color: item.color }}>
@@ -95,10 +114,10 @@ export default function Experience() {
                         {item.org}
                       </span>
                     </div>
-                    <h3 className="text-xs sm:text-sm md:text-xl font-bold text-[var(--text-primary)] mb-1 md:mb-2 leading-snug">
+                    <h3 className="text-xs sm:text-sm md:text-lg font-bold text-[var(--text-primary)] mb-1 leading-snug">
                       {item.title}
                     </h3>
-                    <p className="text-[10px] md:text-sm text-[var(--text-secondary)] font-light leading-relaxed">
+                    <p className="text-[9px] md:text-sm text-[var(--text-secondary)] font-light leading-relaxed">
                       {item.description}
                     </p>
                   </div>
