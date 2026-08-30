@@ -1,7 +1,8 @@
 import { useEffect, useState, useRef } from 'react'
-import { motion, AnimatePresence, useMotionValue, animate } from 'framer-motion'
+import { motion, useMotionValue, animate } from 'framer-motion'
 import Navbar from './components/Navbar'
 import ShatterSection from './components/ShatterSection'
+import SectionDots from './components/SectionDots'
 import Hero from './sections/Hero'
 import About from './sections/About'
 import Projects from './sections/Projects'
@@ -14,7 +15,10 @@ import CustomCursor from './components/CustomCursor'
 const TOTAL_SECTIONS = 7 // Hero, About, Skills, Certificates, Experience, Projects, Contact
 
 function App() {
-  const [theme, setTheme] = useState('light')
+  // Theme persistence — reads from localStorage, defaults to 'dark'
+  const [theme, setTheme] = useState(() => {
+    try { return localStorage.getItem('portfolio-theme') || 'dark' } catch { return 'dark' }
+  })
   const [activeIndex, setActiveIndex] = useState(0)
   const activeIndexRef = useRef(0)
   
@@ -24,6 +28,7 @@ function App() {
     } else {
       document.documentElement.classList.remove('dark')
     }
+    try { localStorage.setItem('portfolio-theme', theme) } catch {}
   }, [theme])
 
   const toggleTheme = () => {
@@ -32,7 +37,6 @@ function App() {
 
   const z = useMotionValue(0)
 
-  // Animate Z dynamically whenever activeIndex changes
   useEffect(() => {
     animate(z, activeIndex * 1000, {
       type: "tween",
@@ -45,7 +49,7 @@ function App() {
     activeIndexRef.current = activeIndex
   }, [activeIndex])
 
-  // Listen for cross-component navigation events (e.g. Hero "Explore Work" button)
+  // Listen for cross-component navigation events
   useEffect(() => {
     const handleNavigate = (e) => {
       const target = e.detail
@@ -59,7 +63,7 @@ function App() {
   useEffect(() => {
     let isLocked = false
     const maxIndex = TOTAL_SECTIONS - 1
-    const COOLDOWN = 800 // ms — matches the z-axis transition duration
+    const COOLDOWN = 800
 
     const navigate = (direction) => {
       if (isLocked) return
@@ -85,8 +89,6 @@ function App() {
       }
 
       const delta = Math.abs(e.deltaY)
-
-      // Only react to intentional scrolls, ignore tiny trackpad jitter
       if (delta > 50) {
         navigate(e.deltaY > 0 ? 1 : -1)
       }
@@ -135,35 +137,37 @@ function App() {
     <div className="h-[100dvh] w-full overflow-hidden relative bg-[var(--bg-primary)]">
       <CustomCursor />
       
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="fixed inset-0 w-full overflow-hidden pointer-events-none"
-          >
-            <div className="absolute top-0 left-0 w-full z-50 pointer-events-none">
-                <div className="pointer-events-auto">
-                    <Navbar theme={theme} toggleTheme={toggleTheme} setActiveIndex={setActiveIndex} />
-                </div>
-            </div>
+      {/* Section Progress Dots */}
+      <SectionDots activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
 
-            {/* Z-Axis Discrete Snap Layout with Shatter Effect */}
-            <div className="h-[100dvh] w-full scene-container pointer-events-auto">
-                <motion.div 
-                  style={{ z }} 
-                  className="w-full h-full scene-content absolute inset-0"
-                >
-                  <ShatterSection z={z} index={0} activeIndex={activeIndex}><Hero /></ShatterSection>
-                  <ShatterSection z={z} index={1} activeIndex={activeIndex}><About /></ShatterSection>
-                  <ShatterSection z={z} index={2} activeIndex={activeIndex}><Skills /></ShatterSection>
-                  <ShatterSection z={z} index={3} activeIndex={activeIndex}><Certificates /></ShatterSection>
-                  <ShatterSection z={z} index={4} activeIndex={activeIndex}><Experience /></ShatterSection>
-                  <ShatterSection z={z} index={5} activeIndex={activeIndex}><Projects /></ShatterSection>
-                  <ShatterSection z={z} index={6} activeIndex={activeIndex}><Contact /></ShatterSection>
-                </motion.div>
-              </div>
-            
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="fixed inset-0 w-full overflow-hidden pointer-events-none"
+      >
+        <div className="absolute top-0 left-0 w-full z-50 pointer-events-none">
+          <div className="pointer-events-auto">
+            <Navbar theme={theme} toggleTheme={toggleTheme} setActiveIndex={setActiveIndex} activeIndex={activeIndex} />
+          </div>
+        </div>
+
+        {/* Z-Axis Discrete Snap Layout with Shatter Effect */}
+        <div className="h-[100dvh] w-full scene-container pointer-events-auto">
+          <motion.div 
+            style={{ z }} 
+            className="w-full h-full scene-content absolute inset-0"
+          >
+            <ShatterSection z={z} index={0} activeIndex={activeIndex}><Hero /></ShatterSection>
+            <ShatterSection z={z} index={1} activeIndex={activeIndex}><About /></ShatterSection>
+            <ShatterSection z={z} index={2} activeIndex={activeIndex}><Skills /></ShatterSection>
+            <ShatterSection z={z} index={3} activeIndex={activeIndex}><Certificates /></ShatterSection>
+            <ShatterSection z={z} index={4} activeIndex={activeIndex}><Experience /></ShatterSection>
+            <ShatterSection z={z} index={5} activeIndex={activeIndex}><Projects /></ShatterSection>
+            <ShatterSection z={z} index={6} activeIndex={activeIndex}><Contact /></ShatterSection>
           </motion.div>
+        </div>
+      </motion.div>
     </div>
   )
 }
