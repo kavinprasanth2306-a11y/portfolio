@@ -130,15 +130,45 @@ function App() {
     }
 
     let touchStartY = 0
+    let touchHandled = false
+
     const handleTouchStart = (e) => {
       touchStartY = e.touches[0].clientY
+      touchHandled = false
     }
+
+    const handleTouchMove = (e) => {
+      // Check if touch is inside a scrollable element that still has room to scroll
+      const path = e.composedPath && e.composedPath()
+      if (path) {
+        for (const el of path) {
+          if (el === document || el === window || !el.getBoundingClientRect) continue
+          try {
+            const style = window.getComputedStyle(el)
+            const isScrollable = (style.overflowY === 'auto' || style.overflowY === 'scroll')
+            if (isScrollable && el.scrollHeight > el.clientHeight + 1) {
+              const atTop = el.scrollTop <= 0
+              const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1
+              const touchDelta = touchStartY - e.touches[0].clientY
+              if (touchDelta > 0 && !atBottom) return // scrolling down, not at bottom
+              if (touchDelta < 0 && !atTop) return // scrolling up, not at top
+            }
+          } catch { continue }
+        }
+      }
+      // Prevent browser pull-to-refresh and native scroll
+      e.preventDefault()
+    }
+
     const handleTouchEnd = (e) => {
+      if (touchHandled) return
       const touchEndY = e.changedTouches[0].clientY
       const deltaY = touchStartY - touchEndY
       if (deltaY > 60) {
+        touchHandled = true
         navigate(1)
       } else if (deltaY < -60) {
+        touchHandled = true
         navigate(-1)
       }
     }
@@ -146,12 +176,14 @@ function App() {
     window.addEventListener('wheel', handleWheel, { passive: false })
     window.addEventListener('keydown', handleKeyDown, { passive: false })
     window.addEventListener('touchstart', handleTouchStart, { passive: false })
+    window.addEventListener('touchmove', handleTouchMove, { passive: false })
     window.addEventListener('touchend', handleTouchEnd, { passive: false })
     
     return () => {
       window.removeEventListener('wheel', handleWheel)
       window.removeEventListener('keydown', handleKeyDown)
       window.removeEventListener('touchstart', handleTouchStart)
+      window.removeEventListener('touchmove', handleTouchMove)
       window.removeEventListener('touchend', handleTouchEnd)
     }
   }, [])

@@ -3,6 +3,17 @@
 @tailwind utilities;
 
 @layer base {
+  /* Disable Chrome's pull-to-refresh on mobile */
+  html, body {
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: auto;
+    touch-action: none;
+  }
+  html {
+    overflow: hidden;
+    height: 100%;
+  }
+
   :root {
     --bg-primary: #f0f2f5;
     --text-primary: #0a0a0b;
@@ -26,7 +37,8 @@
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    @apply font-sans antialiased leading-relaxed transition-colors duration-700 overflow-x-hidden;
+    @apply font-sans antialiased leading-relaxed transition-colors duration-700 overflow-hidden;
+    height: 100%;
   }
   
   /* Rich, atmospheric gradient background */
@@ -115,3 +127,8 @@
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background-color: var(--text-secondary); @apply rounded-full opacity-20 transition-opacity duration-300; }
 ::-webkit-scrollbar-thumb:hover { @apply opacity-50; }
+
+/* Re-enable touch scrolling inside scrollable containers */
+[data-lenis-prevent="true"] {
+  touch-action: pan-y;
+}
