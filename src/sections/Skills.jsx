@@ -1,14 +1,19 @@
 import { motion, useTransform } from 'framer-motion'
-import { FaHtml5, FaJs, FaPython, FaLinux, FaReact, FaNodeJs, FaGitAlt, FaDocker } from 'react-icons/fa'
+import { FaHtml5, FaJs, FaPython, FaLinux, FaReact, FaNodeJs, FaGitAlt } from 'react-icons/fa'
 import { SiFlutter, SiPytorch, SiTypescript, SiTailwindcss, SiFirebase, SiGooglecloud, SiDart, SiVite, SiFlask, SiSqlite } from 'react-icons/si'
-import { HiShieldCheck, HiCode, HiDatabase } from 'react-icons/hi'
+import { HiShieldCheck, HiCode } from 'react-icons/hi'
+
+const skillsData = [
   // Frontend
   { name: 'React', icon: FaReact, color: '#61DAFB' },
   { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
+  { name: 'JavaScript', icon: FaJs, color: '#f7df1e' },
+  { name: 'HTML & CSS', icon: FaHtml5, color: '#e34f26' },
   { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#06B6D4' },
   { name: 'Vite', icon: SiVite, color: '#646CFF' },
 
   // Mobile
+  { name: 'Flutter', icon: SiFlutter, color: '#02569B' },
   { name: 'Dart', icon: SiDart, color: '#0175C2' },
 
   // Backend & DB
@@ -18,19 +23,14 @@ import { HiShieldCheck, HiCode, HiDatabase } from 'react-icons/hi'
   { name: 'Firebase', icon: SiFirebase, color: '#FFCA28' },
 
   // AI & Data
+  { name: 'Python', icon: FaPython, color: '#3776AB' },
+  { name: 'PyTorch & AI', icon: SiPytorch, color: '#EE4C2C' },
 
   // DevOps & Cloud
   { name: 'Google Cloud', icon: SiGooglecloud, color: '#4285F4' },
   { name: 'Git', icon: FaGitAlt, color: '#F05032' },
 
   // Systems & Security
-
-const skillsData = [
-  { name: 'HTML & CSS', icon: FaHtml5, color: '#e34f26' },
-  { name: 'JavaScript', icon: FaJs, color: '#f7df1e' },
-  { name: 'Flutter', icon: SiFlutter, color: '#02569B' },
-  { name: 'Python', icon: FaPython, color: '#3776AB' },
-  { name: 'PyTorch & AI', icon: SiPytorch, color: '#EE4C2C' },
   { name: 'C / C++', icon: HiCode, color: '#00599C' },
   { name: 'Kali Linux', icon: FaLinux, color: '#557C94' },
   { name: 'Cyber Security', icon: HiShieldCheck, color: '#2e8b57' },
@@ -132,41 +132,68 @@ export const GlassCracks = ({ index = 0 }) => {
   )
 }
 
+// Stagger animation
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.04 } }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.8, y: 20 },
+  visible: { 
+    opacity: 1, scale: 1, y: 0,
+    transition: { type: 'spring', stiffness: 200, damping: 15 }
+  }
+}
+
 export default function Skills() {
   return (
-    <div className="w-full h-full flex flex-col justify-center relative bg-[var(--bg-primary)] p-4 md:p-20 overflow-hidden">
+    <div className="w-full h-full flex flex-col items-center relative bg-[var(--bg-primary)] p-4 md:p-8 overflow-hidden">
       <div 
-        className="absolute top-1/4 left-0 text-[20vw] font-black text-[var(--text-primary)] opacity-5 whitespace-nowrap pointer-events-none select-none leading-none"
+        className="absolute top-1/4 left-0 text-[20vw] font-black text-[var(--text-primary)] opacity-[0.03] whitespace-nowrap pointer-events-none select-none leading-none"
       >
         ARSENAL
       </div>
 
-
-      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col h-full justify-center">
-        <h2 className="text-3xl md:text-6xl font-bold text-[var(--text-primary)] mb-6 md:mb-12 uppercase tracking-tighter">
-          Tech <span className="text-teal-400">Stack</span>
-        </h2>
+      <div 
+        className="relative z-10 w-full max-w-7xl mx-auto flex flex-col h-full overflow-y-auto pt-14 md:pt-16 pb-4"
+        data-lenis-prevent="true"
+      >
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-4 md:mb-8 gap-2 flex-shrink-0">
+          <h2 className="text-3xl md:text-6xl font-bold text-[var(--text-primary)] uppercase tracking-tighter">
+            Tech <span className="text-teal-400">Stack</span>
+          </h2>
+          <span className="text-[10px] md:text-xs text-[var(--text-secondary)] uppercase tracking-widest">{skillsData.length} Technologies</span>
+        </div>
         
-        <div className="grid grid-cols-4 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6 px-0 md:px-10 pb-8 md:pb-32">
+        <motion.div 
+          className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-6 gap-2 md:gap-4 px-0 md:px-4"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {skillsData.map((skill, idx) => (
             <motion.div 
               key={skill.name}
-              whileHover={{ y: -5, scale: 1.02 }}
-              className="glass-card relative flex flex-col items-center justify-center p-2 sm:p-3 md:p-8 border border-[var(--glass-border)] bg-[var(--glass-bg)] backdrop-blur-md group overflow-hidden cursor-pointer h-20 sm:h-24 md:h-auto"
+              variants={itemVariants}
+              whileHover={{ y: -6, scale: 1.05, transition: { duration: 0.2 } }}
+              className="glass-card relative flex flex-col items-center justify-center p-2 sm:p-3 md:p-6 border border-[var(--glass-border)] bg-[var(--glass-bg)] backdrop-blur-md group overflow-hidden cursor-pointer h-[70px] sm:h-[80px] md:h-auto"
               style={{
-                 borderRadius: idx % 2 === 0 ? '1rem 0.25rem 1rem 0.25rem' : '0.25rem 1rem 0.25rem 1rem',
-                 WebkitMaskImage: getCrackMask(idx),
-                 WebkitMaskSize: '100% 100%'
+                 borderRadius: idx % 3 === 0 ? '1rem 0.25rem' : idx % 3 === 1 ? '0.25rem 1rem' : '0.75rem',
               }}
             >
-              <GlassCracks index={idx} />
-              <skill.icon className="text-2xl md:text-5xl mb-2 md:mb-4 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 relative z-10" style={{ color: skill.color }} />
-              <span className="font-sans font-bold tracking-widest text-[8px] md:text-xs uppercase text-[var(--text-primary)] opacity-70 group-hover:opacity-100 transition-opacity relative z-10 text-center leading-tight">
+              {/* Hover glow */}
+              <div 
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
+                style={{ background: `radial-gradient(circle at center, ${skill.color}15, transparent 70%)` }} 
+              />
+              <skill.icon className="text-xl sm:text-2xl md:text-4xl mb-1 md:mb-3 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 relative z-10" style={{ color: skill.color }} />
+              <span className="font-sans font-bold tracking-wider text-[7px] sm:text-[8px] md:text-[11px] uppercase text-[var(--text-primary)] opacity-60 group-hover:opacity-100 transition-opacity relative z-10 text-center leading-tight">
                 {skill.name}
               </span>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   )

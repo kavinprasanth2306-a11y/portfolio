@@ -49,7 +49,7 @@ export default function About() {
           
           <BentoBox colSpan={6} rowSpan={1} delay={0.2} className="bg-gradient-to-br from-[var(--glass-bg)] to-indigo-900/10">
             <div className="flex flex-col items-center justify-center text-center h-full">
-              <p className="font-display text-2xl sm:text-3xl md:text-5xl font-light text-[var(--text-primary)] mb-0 md:mb-1">8+</p>
+              <p className="font-display text-2xl sm:text-3xl md:text-5xl font-light text-[var(--text-primary)] mb-0 md:mb-1">19</p>
               <p className="text-[7px] sm:text-[8px] md:text-[10px] text-indigo-400 uppercase tracking-[1px] md:tracking-[3px] font-bold">Tech Stack</p>
             </div>
           </BentoBox>
