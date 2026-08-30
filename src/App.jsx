@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence, useMotionValue, animate } from 'framer-motion'
-import PageLoader from './components/PageLoader'
 import Navbar from './components/Navbar'
 import ShatterSection from './components/ShatterSection'
 import Hero from './sections/Hero'
@@ -15,7 +14,6 @@ import CustomCursor from './components/CustomCursor'
 const TOTAL_SECTIONS = 7 // Hero, About, Skills, Certificates, Experience, Projects, Contact
 
 function App() {
-  const [loaded, setLoaded] = useState(false)
   const [theme, setTheme] = useState('light')
   const [activeIndex, setActiveIndex] = useState(0)
   const activeIndexRef = useRef(0)
@@ -137,13 +135,6 @@ function App() {
     <div className="h-[100dvh] w-full overflow-hidden relative bg-[var(--bg-primary)]">
       <CustomCursor />
       
-      {/* Page Loader */}
-      <AnimatePresence>
-        {!loaded && <PageLoader onComplete={() => setLoaded(true)} />}
-      </AnimatePresence>
-
-      <AnimatePresence>
-        {loaded && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -173,8 +164,6 @@ function App() {
               </div>
             
           </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   )
 }
