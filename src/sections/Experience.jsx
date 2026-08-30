@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { HiAcademicCap, HiDownload, HiBadgeCheck } from 'react-icons/hi'
+import { HiAcademicCap, HiBadgeCheck } from 'react-icons/hi'
 import { SiGooglecloud, SiPython, SiGit } from 'react-icons/si'
 
 const timelineData = [
@@ -61,22 +61,10 @@ export default function Experience() {
         className="max-w-5xl w-full relative z-10 flex flex-col h-full overflow-y-auto pt-14 md:pt-16 pb-4"
         data-lenis-prevent="true"
       >
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-4 md:mb-8 gap-3 md:gap-4 flex-shrink-0">
+        <div className="mb-4 md:mb-8 flex-shrink-0">
           <h2 className="font-display text-3xl sm:text-4xl md:text-7xl font-light text-[var(--text-primary)] uppercase tracking-tighter">
             My <span className="font-semibold text-gradient">Journey</span>
           </h2>
-          
-          {/* Resume Download Button */}
-          <motion.a
-            href="/resume.pdf"
-            download
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 md:gap-3 px-5 py-2.5 md:px-6 md:py-3 rounded-full bg-[var(--text-primary)] text-[var(--bg-primary)] font-bold text-[10px] md:text-xs uppercase tracking-wider hover:shadow-[0_0_25px_rgba(255,255,255,0.2)] transition-all duration-300 w-fit"
-          >
-            <HiDownload size={14} />
-            Download Resume
-          </motion.a>
         </div>
 
         {/* Timeline */}
