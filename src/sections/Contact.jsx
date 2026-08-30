@@ -127,6 +127,13 @@ export default function Contact() {
         </div>
 
       </motion.div>
+
+      {/* Copyright Footer */}
+      <div className="absolute bottom-3 md:bottom-5 left-0 right-0 text-center z-10">
+        <p className="text-[9px] md:text-xs text-[var(--text-secondary)]/40 tracking-wider uppercase">
+          &copy; {new Date().getFullYear()} Kavinprasanth KM &mdash; Built with React & Framer Motion
+        </p>
+      </div>
     </div>
   )
 }
