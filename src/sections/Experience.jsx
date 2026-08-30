@@ -7,7 +7,7 @@ const timelineData = [
     type: 'education',
     title: 'B.Tech — Computer Science & Engineering',
     org: 'Karunya Institute of Technology and Sciences',
-    period: '2022 — Present',
+    period: '2025 — 2029',
     description: 'Focusing on AI/Deep Learning, software engineering, and cross-platform development.',
     icon: HiAcademicCap,
     color: '#6366f1',
@@ -17,7 +17,7 @@ const timelineData = [
     title: 'Google Cloud Digital Leader',
     org: 'Google Cloud',
     period: 'May 2026',
-    description: 'Certified in cloud concepts, Google Cloud products, and digital transformation strategies. Valid until May 2029.',
+    description: 'Certified in cloud concepts, Google Cloud products, and digital transformation strategies.',
     icon: SiGooglecloud,
     color: '#4285F4',
   },
@@ -26,7 +26,7 @@ const timelineData = [
     title: 'Python Programming Track (6 Courses)',
     org: 'DataCamp',
     period: 'Jan 2026',
-    description: 'Completed Introduction to Python, Intermediate Python, Data Types in Python, Python Toolbox, and Python Programming Fundamentals (13 hrs).',
+    description: 'Intro to Python, Intermediate Python, Data Types, Python Toolbox, and Programming Fundamentals.',
     icon: SiPython,
     color: '#3776AB',
   },
@@ -35,7 +35,7 @@ const timelineData = [
     title: 'Git & GitHub Track (7 Courses)',
     org: 'DataCamp',
     period: 'Jan 2026',
-    description: 'Completed Introduction to Git, Intermediate Git, Advanced Git, Git Fundamentals, GitHub Foundations, Introduction to GitHub, and Intermediate GitHub Concepts.',
+    description: 'Intro to Git, Intermediate Git, Advanced Git, Git Fundamentals, GitHub Foundations, and more.',
     icon: SiGit,
     color: '#F05032',
   },
@@ -44,7 +44,7 @@ const timelineData = [
     title: 'MATLAB Onramp',
     org: 'MathWorks',
     period: 'Jan 2026',
-    description: 'Completed the self-paced MATLAB fundamentals course with 100% completion.',
+    description: 'Self-paced MATLAB fundamentals course — 100% completion.',
     icon: HiBadgeCheck,
     color: '#0076A8',
   },
@@ -52,13 +52,16 @@ const timelineData = [
 
 export default function Experience() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center relative p-4 md:p-8 overflow-hidden">
+    <div className="w-full h-full flex flex-col items-center relative p-4 md:p-8 overflow-hidden">
 
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen opacity-40 dark:opacity-20"></div>
 
-      <div className="max-w-5xl w-full relative z-10 flex flex-col h-full justify-center">
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-6 md:mb-12 gap-3 md:gap-4">
+      <div 
+        className="max-w-5xl w-full relative z-10 flex flex-col h-full overflow-y-auto pt-14 md:pt-16 pb-4"
+        data-lenis-prevent="true"
+      >
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-4 md:mb-8 gap-3 md:gap-4 flex-shrink-0">
           <h2 className="font-display text-3xl sm:text-4xl md:text-7xl font-light text-[var(--text-primary)] uppercase tracking-tighter">
             My <span className="font-semibold text-gradient">Journey</span>
           </h2>
@@ -81,7 +84,7 @@ export default function Experience() {
           {/* Vertical line */}
           <div className="absolute left-3 md:left-6 top-0 bottom-0 w-[1px] bg-gradient-to-b from-[var(--glass-border)] via-cyan-500/30 to-[var(--glass-border)]"></div>
 
-          <div className="flex flex-col gap-3 md:gap-5">
+          <div className="flex flex-col gap-3 md:gap-4">
             {timelineData.map((item, i) => {
               const Icon = item.icon
               return (
@@ -95,17 +98,18 @@ export default function Experience() {
                 >
                   {/* Timeline dot */}
                   <div
-                    className="absolute left-1 md:left-4 top-4 md:top-5 w-4 h-4 md:w-5 md:h-5 rounded-full border-2 flex items-center justify-center bg-[var(--bg-primary)] z-10 group-hover:scale-125 transition-transform duration-300"
+                    className="absolute left-1 md:left-4 top-3 md:top-4 w-4 h-4 md:w-5 md:h-5 rounded-full border-2 flex items-center justify-center bg-[var(--bg-primary)] z-10 group-hover:scale-125 transition-transform duration-300"
                     style={{ borderColor: item.color }}
                   >
                     <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full" style={{ backgroundColor: item.color }}></div>
                   </div>
 
                   {/* Content card */}
-                  <div className="glass-card p-4 md:p-6 group-hover:shadow-lg transition-shadow duration-300">
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mb-1 md:mb-2">
+                  <div className="glass-card p-3 md:p-5 group-hover:shadow-lg transition-shadow duration-300">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-3 mb-0.5 md:mb-1">
                       <div className="flex items-center gap-1.5 md:gap-2">
-                        <Icon size={14} style={{ color: item.color }} />
+                        <Icon size={12} className="md:hidden" style={{ color: item.color }} />
+                        <Icon size={14} className="hidden md:block" style={{ color: item.color }} />
                         <span className="text-[8px] md:text-[10px] uppercase tracking-[2px] md:tracking-[3px] font-bold" style={{ color: item.color }}>
                           {item.period}
                         </span>
@@ -114,7 +118,7 @@ export default function Experience() {
                         {item.org}
                       </span>
                     </div>
-                    <h3 className="text-xs sm:text-sm md:text-lg font-bold text-[var(--text-primary)] mb-1 leading-snug">
+                    <h3 className="text-[11px] sm:text-sm md:text-lg font-bold text-[var(--text-primary)] mb-0.5 leading-snug">
                       {item.title}
                     </h3>
                     <p className="text-[9px] md:text-sm text-[var(--text-secondary)] font-light leading-relaxed">
