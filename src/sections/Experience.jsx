@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { HiAcademicCap, HiBadgeCheck } from 'react-icons/hi'
+import { HiShieldCheck } from 'react-icons/hi'
 import { SiGooglecloud, SiPython, SiGit } from 'react-icons/si'
 
 const timelineData = [
@@ -11,6 +12,15 @@ const timelineData = [
     description: 'Focusing on AI/Deep Learning, software engineering, and cross-platform development.',
     icon: HiAcademicCap,
     color: '#6366f1',
+  },
+  {
+    type: 'experience',
+    title: 'Penetration Tester Intern',
+    org: 'HackersDaddy Cyber Security Solutions, London (Remote)',
+    period: 'Jun — Jul 2026',
+    description: 'Hands-on offensive security training — web app pentesting, VAPT, recon, API security testing. Cleared the Junior WebApp Penetration Tester (JWPT) exam.',
+    icon: HiShieldCheck,
+    color: '#ef4444',
   },
   {
     type: 'cert',
