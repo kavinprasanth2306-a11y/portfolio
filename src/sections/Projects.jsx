@@ -5,53 +5,53 @@ import { GlassCracks, getCrackMask } from './Skills'
 
 const projectsData = [
   {
-    title: 'Scarlet Manga',
-    accent: '#f43f5e',
-    mockup: 'https://placehold.co/800x450/1a0a0f/f43f5e?text=Scarlet+Manga',
-    context: 'A cross-platform Flutter manga/manhwa reader app with offline downloads, biometric vault, video playback, and PiP mode.',
-    challenge: 'Building a concurrent download manager (5 parallel downloads), integrating biometric authentication, and supporting both manga reading and video playback in a single app.',
-    outcome: 'Full-featured reader with offline queue, Firebase auth with Google Sign-In, foreground download service, and local notifications.',
+    title: 'AYLA',
+    accent: '#818cf8',
+    mockup: 'https://placehold.co/800x450/0f0a1f/818cf8?text=AYLA',
+    context: 'AI-powered Indian fashion styling & tailoring assistant — from silhouette to stitch, designed on you.',
+    challenge: 'Integrating AI body measurement from photos, 3D garment visualization, and generating tailor-ready PDF patterns with precise measurements.',
+    outcome: 'Built a complete Flutter app with image picker, 3D model viewer, AI styling recommendations, and exportable PDF measurement sheets.',
     link: 'https://github.com/kavinprasanth2306-a11y',
-    tech: ["Flutter", "Dart", "Firebase", "Dio"],
-    monogram: "SM",
-    glow: "bg-rose-500"
-  },
-  {
-    title: 'Portfolio Website',
-    accent: '#38bdf8',
-    mockup: 'https://placehold.co/800x450/050520/38bdf8?text=Portfolio+v3',
-    context: 'A modern developer portfolio with Z-axis fly-through navigation, glassmorphism design, and shatter-glass transitions.',
-    challenge: 'Implementing a unique 3D section navigation system using CSS perspective and Framer Motion, with smooth discrete snapping and custom scroll decoding.',
-    outcome: 'Built a performant single-page app with 7 sections, light/dark themes, custom cursor, cracked-glass effects, and full mobile responsiveness.',
-    link: '#',
-    tech: ["React", "Vite", "Tailwind", "Framer Motion"],
-    monogram: "PF",
-    glow: "bg-sky-500"
+    tech: ["Flutter", "AI/ML", "3D Models", "PDF"],
+    monogram: "AY",
+    glow: "bg-indigo-500"
   },
   {
     title: 'AI Image Generator',
-    accent: '#8b5cf6',
-    mockup: 'https://placehold.co/800x450/0f0a1a/8b5cf6?text=AI+Image+Gen',
-    context: 'A deep learning project exploring image generation using GANs (Generative Adversarial Networks) with PyTorch.',
-    challenge: 'Training stable GANs on custom datasets and fine-tuning generator/discriminator balance for high-quality outputs.',
-    outcome: 'Successfully trained models producing realistic images with progressive resolution scaling.',
+    accent: '#f43f5e',
+    mockup: 'https://placehold.co/800x450/1a0a0f/f43f5e?text=AI+Image+Gen',
+    context: 'A GAN-based image generation system with a Flask API and web interface — type a class name and generate images from trained models.',
+    challenge: 'Training stable GANs and autoencoders on custom datasets, balancing generator/discriminator, and serving models via a real-time Flask API with CUDA support.',
+    outcome: 'Trained Generator + Autoencoder models (.pth), REST API for on-demand image generation, and a clean web UI for interacting with the models.',
     link: 'https://github.com/kavinprasanth2306-a11y',
-    tech: ["Python", "PyTorch", "GANs", "CUDA"],
+    tech: ["Python", "PyTorch", "Flask", "GANs"],
     monogram: "AI",
-    glow: "bg-violet-500"
+    glow: "bg-rose-500"
   },
   {
-    title: 'Cloud Infrastructure',
-    accent: '#06b6d4',
-    mockup: 'https://placehold.co/800x450/0a1a1f/06b6d4?text=Cloud+Infra',
-    context: 'Cloud-native projects and infrastructure design as part of Google Cloud Digital Leader certification.',
-    challenge: 'Understanding and implementing cloud architecture patterns, serverless deployments, and digital transformation strategies.',
-    outcome: 'Earned Google Cloud Digital Leader certification with hands-on experience in GCP services.',
-    link: '#',
-    tech: ["GCP", "Cloud Run", "Firebase", "BigQuery"],
-    monogram: "GC",
-    glow: "bg-cyan-500"
-  }
+    title: 'CTF Toolkit',
+    accent: '#2e8b57',
+    mockup: 'https://placehold.co/800x450/0a1a0f/2e8b57?text=CTF+Toolkit',
+    context: 'An automated Capture The Flag challenge solver — a comprehensive Python CLI toolkit for recon, web exploitation, crypto, and more.',
+    challenge: 'Building modular solvers that chain together: port scanning → directory busting → SQL injection → XSS detection → crypto decoding, all from a single CLI.',
+    outcome: 'A full CTF automation suite with Nmap wrappers, SQLMap integration, XSS/LFI detection, hash cracking, and auto-solve pipelines.',
+    link: 'https://github.com/kavinprasanth2306-a11y',
+    tech: ["Python", "Nmap", "SQLMap", "Cyber Sec"],
+    monogram: "CT",
+    glow: "bg-emerald-500"
+  },
+  {
+    title: 'MemSee',
+    accent: '#38bdf8',
+    mockup: 'https://placehold.co/800x450/050520/38bdf8?text=MemSee',
+    context: 'An interactive addressing mode visualizer for computer architecture — watch data flow between IR, ALU, MAR, and Memory in real-time.',
+    challenge: 'Simulating CPU data paths with animated visualizations, computing effective addresses live, and integrating Google Gemini AI for contextual explanations.',
+    outcome: 'A complete learning tool with real-time CPU simulation, AI-powered insights via Gemini, and support for Immediate, Register, Direct, Indirect, and Indexed modes.',
+    link: 'https://github.com/kavinprasanth2306-a11y',
+    tech: ["React", "TypeScript", "Gemini AI", "Vite"],
+    monogram: "MS",
+    glow: "bg-sky-500"
+  },
 ]
 
 export default function Projects() {
