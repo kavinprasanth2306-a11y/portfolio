@@ -18,7 +18,8 @@ export default function ParticleBackground() {
     window.addEventListener('resize', resize)
 
     // Create particles
-    const PARTICLE_COUNT = 60
+    const isMobile = window.innerWidth < 768
+    const PARTICLE_COUNT = isMobile ? 20 : 60
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       particles.push({
         x: Math.random() * canvas.width,
@@ -62,7 +63,7 @@ export default function ParticleBackground() {
           const dx = particles[i].x - particles[j].x
           const dy = particles[i].y - particles[j].y
           const dist = Math.sqrt(dx * dx + dy * dy)
-          if (dist < 120) {
+          if (dist < (isMobile ? 80 : 120)) {
             ctx.beginPath()
             ctx.moveTo(particles[i].x, particles[i].y)
             ctx.lineTo(particles[j].x, particles[j].y)

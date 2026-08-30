@@ -5,6 +5,12 @@ export default function KeyboardHint() {
   const [visible, setVisible] = useState(true)
 
   useEffect(() => {
+    // Don't show on touch devices / mobile
+    if (window.matchMedia('(pointer: coarse)').matches) {
+      setVisible(false)
+      return
+    }
+
     // Check if user has seen the hint before
     try {
       if (localStorage.getItem('portfolio-hint-seen')) {

@@ -18,12 +18,15 @@ export default function Contact() {
     const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)
 
     const gmailUrl = `https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=cm&to=${to}&su=${subject}&body=${body}`
-    window.open(gmailUrl, '_blank', 'width=680,height=600,scrollbars=yes')
+    // On mobile, open in new tab; on desktop, open as popup
+    const isMobile = window.innerWidth < 768
+    window.open(gmailUrl, '_blank', isMobile ? '' : 'width=680,height=600,scrollbars=yes')
   }
 
   const openGmail = () => {
     const gmailUrl = `https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=cm&to=kavinprasanth2306@gmail.com`
-    window.open(gmailUrl, '_blank', 'width=680,height=600,scrollbars=yes')
+    const isMobile = window.innerWidth < 768
+    window.open(gmailUrl, '_blank', isMobile ? '' : 'width=680,height=600,scrollbars=yes')
   }
 
   return (
@@ -35,13 +38,13 @@ export default function Contact() {
       <motion.div 
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-        className="glass-card p-5 sm:p-8 md:p-16 max-w-5xl w-full flex flex-col md:flex-row gap-6 md:gap-16 relative z-10"
+        className="glass-card p-4 sm:p-6 md:p-12 max-w-5xl w-full flex flex-col md:flex-row gap-4 md:gap-12 relative z-10 max-h-[85vh] overflow-y-auto"
       >
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-50"></div>
         
         {/* Left - Info */}
         <div className="flex-1 flex flex-col justify-center">
-          <h2 className="font-display text-3xl sm:text-5xl md:text-[6rem] font-light text-[var(--text-primary)] mb-3 md:mb-4 uppercase tracking-tighter drop-shadow-sm leading-none">
+          <h2 className="font-display text-2xl sm:text-4xl md:text-6xl font-light text-[var(--text-primary)] mb-2 md:mb-4 uppercase tracking-tighter drop-shadow-sm leading-none">
             Let's <span className="font-semibold text-gradient">Talk</span>
           </h2>
           

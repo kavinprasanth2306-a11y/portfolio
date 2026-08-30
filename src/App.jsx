@@ -22,8 +22,18 @@ function App() {
   const [theme, setTheme] = useState(() => {
     try { return localStorage.getItem('portfolio-theme') || 'dark' } catch { return 'dark' }
   })
-  const [activeIndex, setActiveIndex] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(() => {
+    try {
+      const saved = sessionStorage.getItem('portfolio-section')
+      return saved ? parseInt(saved, 10) : 0
+    } catch { return 0 }
+  })
   const activeIndexRef = useRef(0)
+
+  // Persist active section so it restores after mobile tab refresh
+  useEffect(() => {
+    try { sessionStorage.setItem('portfolio-section', String(activeIndex)) } catch {}
+  }, [activeIndex])
   
   useEffect(() => {
     if (theme === 'dark') {

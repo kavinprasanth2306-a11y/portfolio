@@ -10,9 +10,9 @@ export default function Hero() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-cyan-500/20 rounded-full blur-[120px] pointer-events-none mix-blend-screen opacity-50 dark:opacity-30"></div>
 
       <motion.div 
-        animate={{ y: [0, -15, 0] }}
+        animate={{ y: [0, -8, 0] }}
         transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-        className="glass-card p-6 sm:p-10 md:p-24 max-w-6xl w-full flex flex-col items-center text-center relative z-10"
+        className="glass-card p-5 sm:p-8 md:p-20 max-w-6xl w-full flex flex-col items-center text-center relative z-10"
       >
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}

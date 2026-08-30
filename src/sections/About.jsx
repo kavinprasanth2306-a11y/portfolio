@@ -9,9 +9,9 @@ export default function About() {
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none mix-blend-screen opacity-50 dark:opacity-20"></div>
 
       <motion.div 
-        animate={{ y: [0, 15, 0] }}
+        animate={{ y: [0, 8, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        className="max-w-6xl w-full flex flex-col md:flex-row gap-4 md:gap-12 items-center relative z-10"
+        className="max-w-6xl w-full flex flex-col md:flex-row gap-3 md:gap-12 items-center relative z-10 max-h-[90vh]"
       >
         
         <div className="w-full md:flex-[1.2] glass-card p-5 sm:p-6 md:p-16 relative overflow-hidden flex flex-col justify-center">

@@ -83,11 +83,11 @@ export default function Projects() {
       <div className="absolute top-[40%] -left-[10%] w-[30vw] h-[30vw] rounded-full bg-teal-500 blur-[150px] opacity-10 pointer-events-none" />
 
       <div 
-        className="w-full max-w-7xl h-[95vh] flex flex-col relative z-10 overflow-y-auto custom-scrollbar rounded-3xl pb-20"
+        className="w-full max-w-7xl h-full flex flex-col relative z-10 overflow-y-auto custom-scrollbar rounded-3xl pb-16 pt-12 md:pt-0"
         data-lenis-prevent="true"
       >
-        <div className="sticky top-0 z-30 pt-12 pb-4 md:pb-6 bg-[var(--bg-secondary)]/90 backdrop-blur-xl border-b border-[var(--glass-border)] mb-6 md:mb-12 px-4 md:px-10">
-          <h2 className="text-3xl md:text-6xl font-bold text-[var(--text-primary)] mb-2 md:mb-4 uppercase tracking-tighter">
+        <div className="sticky top-0 z-30 pt-2 md:pt-12 pb-3 md:pb-6 bg-[var(--bg-secondary)]/90 backdrop-blur-xl border-b border-[var(--glass-border)] mb-4 md:mb-12 px-3 md:px-10">
+          <h2 className="text-2xl md:text-6xl font-bold text-[var(--text-primary)] mb-1 md:mb-4 uppercase tracking-tighter">
             Featured <span className="text-teal-400">Work</span>
           </h2>
           <div className="w-24 h-1 bg-[var(--glass-border)] rounded-full" />
@@ -100,7 +100,7 @@ export default function Projects() {
               whileHover={{ y: -8, scale: 1.02 }}
               transition={{ duration: 0.3, ease: 'easeOut' }}
               onClick={() => setSelectedProject(project)}
-              className="relative overflow-hidden cursor-pointer group flex flex-col h-[220px] md:h-[280px] border border-[var(--glass-border)] bg-[var(--glass-bg)] backdrop-blur-xl shadow-xl dark:shadow-2xl"
+              className="relative overflow-hidden cursor-pointer group flex flex-col h-[180px] sm:h-[220px] md:h-[280px] border border-[var(--glass-border)] bg-[var(--glass-bg)] backdrop-blur-xl shadow-xl dark:shadow-2xl"
               style={{
                 boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.1), inset 0 -4px 10px rgba(0,0,0,0.1), 0 10px 30px rgba(0,0,0,0.1)',
                 borderRadius: idx % 2 === 0 ? '2rem 0.5rem 2rem 0.5rem' : '0.5rem 2rem 0.5rem 2rem',
