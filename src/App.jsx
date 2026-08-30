@@ -77,17 +77,27 @@ function App() {
     }
 
     const handleWheel = (e) => {
-      e.preventDefault()
       const path = e.composedPath && e.composedPath()
       if (path) {
         for (const el of path) {
-          if (el !== document && el.scrollHeight > el.clientHeight && 
-              (window.getComputedStyle(el).overflowY === 'auto' || window.getComputedStyle(el).overflowY === 'scroll')) {
-            return
+          if (el === document || el === window || !el.getBoundingClientRect) continue
+          try {
+            const style = window.getComputedStyle(el)
+            const isScrollable = (style.overflowY === 'auto' || style.overflowY === 'scroll')
+            if (isScrollable && el.scrollHeight > el.clientHeight + 1) {
+              const atTop = el.scrollTop <= 0
+              const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1
+              // Let the element scroll naturally if it's not at its boundary
+              if (e.deltaY < 0 && !atTop) return
+              if (e.deltaY > 0 && !atBottom) return
+            }
+          } catch {
+            continue
           }
         }
       }
 
+      e.preventDefault()
       const delta = Math.abs(e.deltaY)
       if (delta > 50) {
         navigate(e.deltaY > 0 ? 1 : -1)
