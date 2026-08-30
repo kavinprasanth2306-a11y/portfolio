@@ -3,6 +3,9 @@ import { motion, useMotionValue, animate } from 'framer-motion'
 import Navbar from './components/Navbar'
 import ShatterSection from './components/ShatterSection'
 import SectionDots from './components/SectionDots'
+import ParticleBackground from './components/ParticleBackground'
+import ProgressBar from './components/ProgressBar'
+import KeyboardHint from './components/KeyboardHint'
 import Hero from './sections/Hero'
 import About from './sections/About'
 import Projects from './sections/Projects'
@@ -147,6 +150,12 @@ function App() {
     <div className="h-[100dvh] w-full overflow-hidden relative bg-[var(--bg-primary)]">
       <CustomCursor />
       
+      {/* Particle Background */}
+      <ParticleBackground />
+
+      {/* Top Progress Bar */}
+      <ProgressBar activeIndex={activeIndex} />
+
       {/* Section Progress Dots */}
       <SectionDots activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
 
@@ -178,6 +187,9 @@ function App() {
           </motion.div>
         </div>
       </motion.div>
+
+      {/* Keyboard Navigation Hint (first visit only) */}
+      <KeyboardHint />
     </div>
   )
 }

@@ -26,12 +26,15 @@ export default function About() {
           </div>
           <div className="flex flex-col gap-2 md:gap-6 text-xs sm:text-sm md:text-xl text-[var(--text-secondary)] font-light leading-relaxed md:leading-relaxed relative overflow-hidden">
             <p>
-              I'm a passionate software engineer building dynamic, interactive, and
-              user-centric digital experiences across multiple platforms.
+              I build things that live on screens — from full-stack e-commerce platforms 
+              handling real payments to AI systems that generate images from scratch. 
+              I don't just write code, I ship products.
             </p>
             <p>
-              Expertise in web development, Flutter cross-platform apps, and AI/Deep Learning
-              (PyTorch, GANs). Currently pushing boundaries at Karunya Institute of Technology.
+              Currently pursuing B.Tech in Computer Science at Karunya Institute,
+              with hands-on experience across React, Flutter, Python, PyTorch, and 
+              cybersecurity. Google Cloud certified and always building 
+              something new.
             </p>
           </div>
         </div>
