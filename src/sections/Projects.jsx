@@ -5,51 +5,51 @@ import { GlassCracks, getCrackMask } from './Skills'
 
 const projectsData = [
   {
-    title: 'Dmpkart',
-    accent: '#38bdf8', // sky-400
-    mockup: 'https://placehold.co/800x450/0f172a/38bdf8?text=Dmpkart',
-    context: 'A comprehensive e-commerce platform designed for seamless shopping experiences and robust merchant management.',
-    challenge: 'Managing real-time state with Shopify integrations while keeping the mobile experience perfectly fluid.',
-    outcome: 'Improved perceived load times by 40% and increased mobile conversion rates significantly.',
-    link: '#',
-    tech: ["React", "Shopify", "Tailwind"],
-    monogram: "Dm",
-    glow: "bg-sky-500"
-  },
-  {
-    title: 'ARES Exoskeleton',
-    accent: '#818cf8', // indigo-400
-    mockup: 'https://placehold.co/800x450/0f172a/818cf8?text=ARES',
-    context: 'A biomechanical exoskeleton designed to assist with heavy lifting and reduce workplace injuries.',
-    challenge: 'Bridging the gap between software motor control and physical hardware responsiveness.',
-    outcome: 'Achieved a sub-50ms response time.',
-    link: '#',
-    tech: ["C++", "ROS", "Hardware"],
-    monogram: "AR",
-    glow: "bg-indigo-500"
-  },
-  {
-    title: "Ion Core",
+    title: 'Scarlet Manga',
     accent: '#f43f5e',
-    mockup: 'https://placehold.co/800x450/0f172a/f43f5e?text=Ion+Core',
-    context: "A blazingly fast, visually stunning dashboard for monitoring high frequency trading algorithms.",
-    challenge: "Processing millions of data points per second without locking the UI thread.",
-    outcome: "Zero dropped frames at 60fps.",
-    link: "#",
-    tech: ["Rust", "WASM", "React", "WebSocket"],
-    monogram: "Io",
+    mockup: 'https://placehold.co/800x450/1a0a0f/f43f5e?text=Scarlet+Manga',
+    context: 'A cross-platform Flutter manga/manhwa reader app with offline downloads, biometric vault, video playback, and PiP mode.',
+    challenge: 'Building a concurrent download manager (5 parallel downloads), integrating biometric authentication, and supporting both manga reading and video playback in a single app.',
+    outcome: 'Full-featured reader with offline queue, Firebase auth with Google Sign-In, foreground download service, and local notifications.',
+    link: 'https://github.com/kavinprasanth2306-a11y',
+    tech: ["Flutter", "Dart", "Firebase", "Dio"],
+    monogram: "SM",
     glow: "bg-rose-500"
   },
   {
-    title: "Nebula DB",
+    title: 'Portfolio Website',
+    accent: '#38bdf8',
+    mockup: 'https://placehold.co/800x450/050520/38bdf8?text=Portfolio+v3',
+    context: 'A modern developer portfolio with Z-axis fly-through navigation, glassmorphism design, and shatter-glass transitions.',
+    challenge: 'Implementing a unique 3D section navigation system using CSS perspective and Framer Motion, with smooth discrete snapping and custom scroll decoding.',
+    outcome: 'Built a performant single-page app with 7 sections, light/dark themes, custom cursor, cracked-glass effects, and full mobile responsiveness.',
+    link: '#',
+    tech: ["React", "Vite", "Tailwind", "Framer Motion"],
+    monogram: "PF",
+    glow: "bg-sky-500"
+  },
+  {
+    title: 'AI Image Generator',
+    accent: '#8b5cf6',
+    mockup: 'https://placehold.co/800x450/0f0a1a/8b5cf6?text=AI+Image+Gen',
+    context: 'A deep learning project exploring image generation using GANs (Generative Adversarial Networks) with PyTorch.',
+    challenge: 'Training stable GANs on custom datasets and fine-tuning generator/discriminator balance for high-quality outputs.',
+    outcome: 'Successfully trained models producing realistic images with progressive resolution scaling.',
+    link: 'https://github.com/kavinprasanth2306-a11y',
+    tech: ["Python", "PyTorch", "GANs", "CUDA"],
+    monogram: "AI",
+    glow: "bg-violet-500"
+  },
+  {
+    title: 'Cloud Infrastructure',
     accent: '#06b6d4',
-    mockup: 'https://placehold.co/800x450/0f172a/06b6d4?text=Nebula',
-    context: "An interactive, 3D force-directed graph visualization tool designed to make navigating massive databases intuitive and beautiful.",
-    challenge: "Rendering 10,000+ nodes smoothly in the browser.",
-    outcome: "Built a custom WebGL renderer.",
-    link: "#",
-    tech: ["D3.js", "WebGL", "Firebase"],
-    monogram: "Nd",
+    mockup: 'https://placehold.co/800x450/0a1a1f/06b6d4?text=Cloud+Infra',
+    context: 'Cloud-native projects and infrastructure design as part of Google Cloud Digital Leader certification.',
+    challenge: 'Understanding and implementing cloud architecture patterns, serverless deployments, and digital transformation strategies.',
+    outcome: 'Earned Google Cloud Digital Leader certification with hands-on experience in GCP services.',
+    link: '#',
+    tech: ["GCP", "Cloud Run", "Firebase", "BigQuery"],
+    monogram: "GC",
     glow: "bg-cyan-500"
   }
 ]
@@ -67,7 +67,6 @@ export default function Projects() {
     
     if (selectedProject) {
       window.addEventListener('keydown', handleKeyDown)
-      // Auto-focus the close button when modal opens for accessibility
       setTimeout(() => {
         closeButtonRef.current?.focus()
       }, 100)
@@ -87,21 +86,21 @@ export default function Projects() {
         className="w-full max-w-7xl h-[95vh] flex flex-col relative z-10 overflow-y-auto custom-scrollbar rounded-3xl pb-20"
         data-lenis-prevent="true"
       >
-        <div className="sticky top-0 z-30 pt-12 pb-6 bg-[var(--bg-secondary)]/90 backdrop-blur-xl border-b border-[var(--glass-border)] mb-12 px-4 md:px-10">
-          <h2 className="text-4xl md:text-6xl font-bold text-[var(--text-primary)] mb-4 uppercase tracking-tighter">
+        <div className="sticky top-0 z-30 pt-12 pb-4 md:pb-6 bg-[var(--bg-secondary)]/90 backdrop-blur-xl border-b border-[var(--glass-border)] mb-6 md:mb-12 px-4 md:px-10">
+          <h2 className="text-3xl md:text-6xl font-bold text-[var(--text-primary)] mb-2 md:mb-4 uppercase tracking-tighter">
             Featured <span className="text-teal-400">Work</span>
           </h2>
           <div className="w-24 h-1 bg-[var(--glass-border)] rounded-full" />
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 px-2 md:px-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6 px-2 md:px-10">
           {projectsData.map((project, idx) => (
             <motion.div 
               key={project.title}
               whileHover={{ y: -8, scale: 1.02 }}
               transition={{ duration: 0.3, ease: 'easeOut' }}
               onClick={() => setSelectedProject(project)}
-              className="relative overflow-hidden cursor-pointer group flex flex-col h-[280px] border border-[var(--glass-border)] bg-[var(--glass-bg)] backdrop-blur-xl shadow-xl dark:shadow-2xl"
+              className="relative overflow-hidden cursor-pointer group flex flex-col h-[220px] md:h-[280px] border border-[var(--glass-border)] bg-[var(--glass-bg)] backdrop-blur-xl shadow-xl dark:shadow-2xl"
               style={{
                 boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.1), inset 0 -4px 10px rgba(0,0,0,0.1), 0 10px 30px rgba(0,0,0,0.1)',
                 borderRadius: idx % 2 === 0 ? '2rem 0.5rem 2rem 0.5rem' : '0.5rem 2rem 0.5rem 2rem',
@@ -113,7 +112,6 @@ export default function Projects() {
               
               {/* Project Image Area */}
               <div className="w-full h-1/2 relative overflow-hidden z-10 bg-black/5">
-                 {/* Hover Glow */}
                  <div className={`absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-700 mix-blend-overlay ${project.glow}`} />
                  
                  <img 
@@ -122,10 +120,9 @@ export default function Projects() {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                  />
                  
-                 {/* Tech Stack Pills (Simplified for smaller card) */}
                  <div className="absolute top-2 right-2 flex gap-1">
                     {project.tech.slice(0, 1).map((t, i) => (
-                      <span key={i} className="px-2 py-0.5 text-[8px] font-bold tracking-widest uppercase bg-black/40 text-white backdrop-blur-md rounded-full border border-white/10">
+                      <span key={i} className="px-2 py-0.5 text-[7px] md:text-[8px] font-bold tracking-widest uppercase bg-black/40 text-white backdrop-blur-md rounded-full border border-white/10">
                         {t}
                       </span>
                     ))}
@@ -133,17 +130,17 @@ export default function Projects() {
               </div>
 
               {/* Project Info Area */}
-              <div className="w-full h-1/2 p-5 relative z-20 flex flex-col justify-center bg-[var(--bg-secondary)]/60 backdrop-blur-md border-t border-[var(--glass-border)]">
+              <div className="w-full h-1/2 p-3 md:p-5 relative z-20 flex flex-col justify-center bg-[var(--bg-secondary)]/60 backdrop-blur-md border-t border-[var(--glass-border)]">
                 <div className="absolute top-0 left-0 w-full h-[2px] opacity-80 transition-opacity duration-300 group-hover:opacity-100" style={{ backgroundColor: project.accent }}></div>
                 
-                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1 tracking-tight group-hover:text-teal-500 transition-colors duration-300 line-clamp-1">
+                <h3 className="text-sm md:text-lg font-bold text-[var(--text-primary)] mb-1 tracking-tight group-hover:text-teal-500 transition-colors duration-300 line-clamp-1">
                   {project.title}
                 </h3>
-                <p className="text-[var(--text-secondary)] text-xs line-clamp-2 leading-relaxed mb-3">
+                <p className="text-[var(--text-secondary)] text-[10px] md:text-xs line-clamp-2 leading-relaxed mb-2 md:mb-3">
                   {project.context}
                 </p>
                 
-                <div className="mt-auto flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[var(--text-primary)] opacity-70 group-hover:opacity-100 translate-x-[-5px] group-hover:translate-x-0 transition-all duration-300">
+                <div className="mt-auto flex items-center gap-2 text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-[var(--text-primary)] opacity-70 group-hover:opacity-100 translate-x-[-5px] group-hover:translate-x-0 transition-all duration-300">
                   View Details <HiArrowRight />
                 </div>
               </div>
@@ -175,13 +172,13 @@ export default function Projects() {
               <button 
                 ref={closeButtonRef}
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 z-20 w-12 h-12 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-black/40 text-white hover:bg-black/60 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-colors backdrop-blur-md border border-white/10"
+                className="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-black/40 text-white hover:bg-black/60 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-colors backdrop-blur-md border border-white/10"
                 aria-label="Close modal"
               >
-                <HiX size={24} />
+                <HiX size={20} />
               </button>
 
-              <div className="w-full lg:w-1/2 h-64 lg:h-auto relative bg-black/20">
+              <div className="w-full lg:w-1/2 h-48 md:h-64 lg:h-auto relative bg-black/20">
                 <div 
                   className="absolute inset-0 blur-3xl opacity-20"
                   style={{ backgroundColor: selectedProject.accent }}
@@ -194,44 +191,53 @@ export default function Projects() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[var(--bg-primary)] z-10"></div>
               </div>
 
-              <div className="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col gap-8 relative z-10">
+              <div className="w-full lg:w-1/2 p-6 md:p-8 lg:p-12 flex flex-col gap-5 md:gap-8 relative z-10">
                 <div>
-                  <h3 className="font-display text-4xl lg:text-5xl font-bold mb-4 drop-shadow-md" style={{ color: selectedProject.accent }}>
+                  <h3 className="font-display text-2xl md:text-4xl lg:text-5xl font-bold mb-3 drop-shadow-md" style={{ color: selectedProject.accent }}>
                     {selectedProject.title}
                   </h3>
-                  <p className="font-sans text-base lg:text-lg text-[var(--text-secondary)] font-light leading-relaxed">
+                  <p className="font-sans text-sm md:text-base lg:text-lg text-[var(--text-secondary)] font-light leading-relaxed">
                     {selectedProject.context}
                   </p>
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {selectedProject.tech.map((t, i) => (
+                      <span key={i} className="px-3 py-1 text-[9px] md:text-[10px] font-bold tracking-widest uppercase rounded-full border border-[var(--glass-border)] text-[var(--text-secondary)]">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="flex flex-col gap-6">
-                  <div className="flex flex-col gap-3 p-5 rounded-2xl bg-[var(--text-primary)]/5 border border-[var(--glass-border)] backdrop-blur-md relative overflow-hidden">
+                <div className="flex flex-col gap-4 md:gap-6">
+                  <div className="flex flex-col gap-2 p-4 md:p-5 rounded-2xl bg-[var(--text-primary)]/5 border border-[var(--glass-border)] backdrop-blur-md relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-1 h-full" style={{ backgroundColor: selectedProject.accent, opacity: 0.5 }}></div>
-                    <h4 className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--text-secondary)]">The Challenge</h4>
-                    <p className="font-sans text-sm text-[var(--text-primary)] font-light leading-relaxed">
+                    <h4 className="font-sans text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--text-secondary)]">The Challenge</h4>
+                    <p className="font-sans text-xs md:text-sm text-[var(--text-primary)] font-light leading-relaxed">
                       {selectedProject.challenge}
                     </p>
                   </div>
 
-                  <div className="flex flex-col gap-3 p-5 rounded-2xl bg-[var(--text-primary)]/5 border border-[var(--glass-border)] backdrop-blur-md relative overflow-hidden">
+                  <div className="flex flex-col gap-2 p-4 md:p-5 rounded-2xl bg-[var(--text-primary)]/5 border border-[var(--glass-border)] backdrop-blur-md relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-1 h-full bg-cyan-500/50"></div>
-                    <h4 className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--text-secondary)]">The Outcome</h4>
-                    <p className="font-sans text-sm text-[var(--text-primary)] font-light leading-relaxed">
+                    <h4 className="font-sans text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--text-secondary)]">The Outcome</h4>
+                    <p className="font-sans text-xs md:text-sm text-[var(--text-primary)] font-light leading-relaxed">
                       {selectedProject.outcome}
                     </p>
                   </div>
                 </div>
                 
-                <div className="mt-auto pt-8">
-                  <a href={selectedProject.link} target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 font-sans text-sm uppercase tracking-[0.2em] font-bold transition-all hover:gap-5 group/btn"
-                    style={{ color: selectedProject.accent }}
-                  >
-                    View Live Project 
-                    <span className="w-10 h-10 rounded-full bg-[var(--text-primary)]/5 flex items-center justify-center border border-[var(--glass-border)] group-hover/btn:bg-[var(--text-primary)]/10 transition-colors">
-                      <HiArrowRight className="transition-transform group-hover/btn:translate-x-1" />
-                    </span>
-                  </a>
-                </div>
+                {selectedProject.link !== '#' && (
+                  <div className="mt-auto pt-4 md:pt-8">
+                    <a href={selectedProject.link} target="_blank" rel="noopener noreferrer"
+                      className="inline-flex items-center gap-3 font-sans text-xs md:text-sm uppercase tracking-[0.2em] font-bold transition-all hover:gap-5 group/btn"
+                      style={{ color: selectedProject.accent }}
+                    >
+                      View on GitHub
+                      <span className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[var(--text-primary)]/5 flex items-center justify-center border border-[var(--glass-border)] group-hover/btn:bg-[var(--text-primary)]/10 transition-colors">
+                        <HiArrowRight className="transition-transform group-hover/btn:translate-x-1" />
+                      </span>
+                    </a>
+                  </div>
+                )}
               </div>
             </motion.div>
           </motion.div>
