@@ -103,7 +103,7 @@
   }
 
   .nav-glass {
-    @apply fixed top-4 left-4 right-4 z-50 px-6 py-3 rounded-2xl;
+    @apply fixed top-2 left-2 right-2 z-50 px-4 py-2.5 rounded-xl md:top-4 md:left-4 md:right-4 md:px-6 md:py-3 md:rounded-2xl;
     background-color: var(--glass-bg);
     border: 1px solid var(--glass-border);
     box-shadow: 0 8px 32px var(--glass-shadow);
