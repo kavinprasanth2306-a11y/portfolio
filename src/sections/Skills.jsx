@@ -1,7 +1,29 @@
 import { motion, useTransform } from 'framer-motion'
-import { FaHtml5, FaJs, FaPython, FaLinux } from 'react-icons/fa'
-import { SiFlutter, SiPytorch } from 'react-icons/si'
-import { HiShieldCheck, HiCode } from 'react-icons/hi'
+import { FaHtml5, FaJs, FaPython, FaLinux, FaReact, FaNodeJs, FaGitAlt, FaDocker } from 'react-icons/fa'
+import { SiFlutter, SiPytorch, SiTypescript, SiTailwindcss, SiFirebase, SiGooglecloud, SiDart, SiVite, SiFlask, SiSqlite } from 'react-icons/si'
+import { HiShieldCheck, HiCode, HiDatabase } from 'react-icons/hi'
+  // Frontend
+  { name: 'React', icon: FaReact, color: '#61DAFB' },
+  { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
+  { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#06B6D4' },
+  { name: 'Vite', icon: SiVite, color: '#646CFF' },
+
+  // Mobile
+  { name: 'Dart', icon: SiDart, color: '#0175C2' },
+
+  // Backend & DB
+  { name: 'Node.js', icon: FaNodeJs, color: '#339933' },
+  { name: 'Flask', icon: SiFlask, color: '#ffffff' },
+  { name: 'SQLite', icon: SiSqlite, color: '#003B57' },
+  { name: 'Firebase', icon: SiFirebase, color: '#FFCA28' },
+
+  // AI & Data
+
+  // DevOps & Cloud
+  { name: 'Google Cloud', icon: SiGooglecloud, color: '#4285F4' },
+  { name: 'Git', icon: FaGitAlt, color: '#F05032' },
+
+  // Systems & Security
 
 const skillsData = [
   { name: 'HTML & CSS', icon: FaHtml5, color: '#e34f26' },
