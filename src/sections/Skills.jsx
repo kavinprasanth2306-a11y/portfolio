@@ -160,7 +160,7 @@ export default function Skills() {
         data-lenis-prevent="true"
       >
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-4 md:mb-8 gap-2 flex-shrink-0">
-          <h2 className="text-3xl md:text-6xl font-bold text-[var(--text-primary)] uppercase tracking-tighter">
+          <h2 className="text-3xl md:text-6xl font-bold text-[var(--text-primary)] uppercase tracking-tighter" id="skills">
             Tech <span className="text-teal-400">Stack</span>
           </h2>
           <span className="text-[10px] md:text-xs text-[var(--text-secondary)] uppercase tracking-widest">{skillsData.length} Technologies</span>

@@ -19,15 +19,15 @@ export default function About() {
           <div className="absolute top-0 left-0 w-12 h-12 md:w-20 md:h-20 border-t-2 border-l-2 border-cyan-500/50 rounded-tl-3xl"></div>
           
           <div className="flex flex-row justify-between items-start gap-3 md:gap-4 mb-3 md:mb-8">
-            <h2 className="font-display text-3xl sm:text-4xl md:text-7xl font-light text-[var(--text-primary)] uppercase tracking-tighter">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-7xl font-light text-[var(--text-primary)] uppercase tracking-tighter" id="about">
               The <span className="font-semibold text-gradient">Story</span>
             </h2>
-            <img src="./profile.png" alt="Kavinprasanth KM — Software Developer and AI Specialist" className="w-14 h-14 sm:w-16 sm:h-16 md:w-40 md:h-40 object-cover rounded-xl md:rounded-3xl shadow-xl border border-[var(--glass-border)]" />
+            <img src="./profile.png" alt="Kavinprasanth KM â€” Software Developer and AI Specialist" className="w-14 h-14 sm:w-16 sm:h-16 md:w-40 md:h-40 object-cover rounded-xl md:rounded-3xl shadow-xl border border-[var(--glass-border)]" />
           </div>
           <div className="flex flex-col gap-2 md:gap-6 text-xs sm:text-sm md:text-xl text-[var(--text-secondary)] font-light leading-relaxed md:leading-relaxed relative overflow-hidden">
             <p>
               Kavinprasanth is a full-stack developer and AI engineer who builds 
-              things that live on screens — from e-commerce platforms handling real 
+              things that live on screens â€” from e-commerce platforms handling real 
               Razorpay payments to GAN-based AI systems that generate images from 
               scratch. Kavinprasanth doesn't just write code, he ships products.
             </p>

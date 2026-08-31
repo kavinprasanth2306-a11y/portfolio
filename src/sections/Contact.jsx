@@ -44,8 +44,8 @@ export default function Contact() {
         
         {/* Left - Info */}
         <div className="flex-1 flex flex-col justify-center">
-          <h2 className="font-display text-2xl sm:text-4xl md:text-6xl font-light text-[var(--text-primary)] mb-2 md:mb-4 uppercase tracking-tighter drop-shadow-sm leading-none">
-            Let's <span className="font-semibold text-gradient">Talk</span>
+          <h2 className="font-display text-2xl sm:text-4xl md:text-6xl font-light text-[var(--text-primary)] mb-2 md:mb-4 uppercase tracking-tighter drop-shadow-sm leading-none" id="contact">
+            Contact <span className="font-semibold text-gradient">Kavinprasanth</span>
           </h2>
           
           <p className="font-sans text-xs sm:text-base md:text-lg text-[var(--text-secondary)] font-light mb-5 md:mb-8 leading-relaxed">
@@ -134,7 +134,7 @@ export default function Contact() {
       {/* Copyright Footer */}
       <div className="absolute bottom-3 md:bottom-5 left-0 right-0 text-center z-10">
         <p className="text-[9px] md:text-xs text-[var(--text-secondary)]/40 tracking-wider uppercase">
-          &copy; {new Date().getFullYear()} Kavinprasanth KM &mdash; Built with React & Framer Motion
+          &copy; {new Date().getFullYear()} Kavinprasanth KM &mdash; kavinprasanth.in &mdash; Built with React & Framer Motion
         </p>
       </div>
     </div>

@@ -5,9 +5,9 @@ import { SiGooglecloud, SiPython, SiGit } from 'react-icons/si'
 const timelineData = [
   {
     type: 'experience',
-    title: 'Penetration Tester — Intern',
-    org: 'HackersDaddy Cyber Security Solutions · London, UK (Remote)',
-    period: 'Jun 2026 — Jul 2026',
+    title: 'Penetration Tester â€” Intern',
+    org: 'HackersDaddy Cyber Security Solutions Â· London, UK (Remote)',
+    period: 'Jun 2026 â€” Jul 2026',
     points: [
       'Conducted web application penetration testing, VAPT assessments, and API security audits across real-world lab environments',
       'Performed reconnaissance, vulnerability scanning, and exploitation using industry-standard offensive security methodologies',
@@ -20,9 +20,9 @@ const timelineData = [
   },
   {
     type: 'education',
-    title: 'B.Tech — Computer Science & Engineering',
-    org: 'Karunya Institute of Technology and Sciences · Coimbatore',
-    period: '2025 — 2029',
+    title: 'B.Tech â€” Computer Science & Engineering',
+    org: 'Karunya Institute of Technology and Sciences Â· Coimbatore',
+    period: '2025 â€” 2029',
     points: [
       'Specializing in Artificial Intelligence, Deep Learning, and Full-Stack Development',
       'Building production-grade projects across web, mobile, and AI domains',
@@ -35,7 +35,7 @@ const timelineData = [
   {
     type: 'cert',
     title: 'Google Cloud Digital Leader',
-    org: 'Google Cloud · Credential ID: 5a0ef374',
+    org: 'Google Cloud Â· Credential ID: 5a0ef374',
     period: 'May 2026',
     points: [
       'Certified in cloud computing concepts, Google Cloud products & services, and digital transformation strategies',
@@ -47,8 +47,8 @@ const timelineData = [
   },
   {
     type: 'cert',
-    title: 'Python Programming — 6 Course Track',
-    org: 'DataCamp · 13+ hours completed',
+    title: 'Python Programming â€” 6 Course Track',
+    org: 'DataCamp Â· 13+ hours completed',
     period: 'Jan 2026',
     points: [
       'Introduction to Python, Intermediate Python for Developers, Data Types in Python',
@@ -60,8 +60,8 @@ const timelineData = [
   },
   {
     type: 'cert',
-    title: 'Git & GitHub — 7 Course Track',
-    org: 'DataCamp · 22+ hours completed',
+    title: 'Git & GitHub â€” 7 Course Track',
+    org: 'DataCamp Â· 22+ hours completed',
     period: 'Jan 2026',
     points: [
       'Introduction to Git, Intermediate Git, Advanced Git, Git Fundamentals',
@@ -74,7 +74,7 @@ const timelineData = [
   {
     type: 'cert',
     title: 'MATLAB Onramp',
-    org: 'MathWorks · Self-Paced',
+    org: 'MathWorks Â· Self-Paced',
     period: 'Jan 2026',
     points: [
       'Completed the official MATLAB fundamentals course with 100% score',
@@ -111,11 +111,11 @@ export default function Experience() {
         data-lenis-prevent="true"
       >
         <div className="mb-4 md:mb-8 flex-shrink-0">
-          <h2 className="font-display text-3xl sm:text-4xl md:text-7xl font-light text-[var(--text-primary)] uppercase tracking-tighter">
-            My <span className="font-semibold text-gradient">Journey</span>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-7xl font-light text-[var(--text-primary)] uppercase tracking-tighter" id="experience">
+            Kavinprasanth's <span className="font-semibold text-gradient">Journey</span>
           </h2>
           <p className="text-[10px] md:text-sm text-[var(--text-secondary)] mt-2 font-light">
-            Professional experience, education & certifications
+            Kavinprasanth KM's professional experience, education & certifications
           </p>
         </div>
 

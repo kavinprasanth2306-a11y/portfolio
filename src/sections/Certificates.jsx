@@ -78,7 +78,7 @@ export default function Certificates() {
         transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
         className="absolute top-1/4 left-0 text-[15vw] font-black text-[var(--text-primary)] opacity-[0.03] whitespace-nowrap pointer-events-none select-none leading-none"
       >
-        ACHIEVEMENTS · CERTIFICATIONS · SKILLS · ACHIEVEMENTS · CERTIFICATIONS
+        ACHIEVEMENTS Â· CERTIFICATIONS Â· SKILLS Â· ACHIEVEMENTS Â· CERTIFICATIONS
       </motion.div>
 
       {/* Floating orbs */}
@@ -100,7 +100,7 @@ export default function Certificates() {
         {/* Header with count badge */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-4 md:mb-8 gap-2 flex-shrink-0">
           <div>
-            <h2 className="text-3xl md:text-6xl font-bold text-[var(--text-primary)] uppercase tracking-tighter">
+            <h2 className="text-3xl md:text-6xl font-bold text-[var(--text-primary)] uppercase tracking-tighter" id="certifications">
               Key <span className="text-[#D4AF37]">Certifications</span>
             </h2>
           </div>
