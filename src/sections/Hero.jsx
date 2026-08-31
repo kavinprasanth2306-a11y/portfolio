@@ -29,7 +29,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.7 }}
           className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-[9rem] font-light text-[var(--text-primary)] leading-[1.05] tracking-tighter mb-4 md:mb-8 drop-shadow-sm"
         >
-          Kavin<br className="sm:hidden" /><span className="font-semibold text-gradient">prasanth</span>
+          Kavin<br className="sm:hidden" /><span className="font-semibold text-gradient">prasanth</span> <span className="sr-only">KM — Software Developer, AI Specialist & Cyber Security Portfolio</span>
         </motion.h1>
         
         <motion.div 

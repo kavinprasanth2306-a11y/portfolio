@@ -116,7 +116,7 @@ export default function Projects() {
                  
                  <img 
                     src={project.mockup} 
-                    alt={project.title}
+                    alt={`Kavinprasanth project — ${project.title}`}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                  />
                  
@@ -185,8 +185,8 @@ export default function Projects() {
                 ></div>
                 <img 
                   src={selectedProject.mockup} 
-                  className="w-full h-full object-cover relative z-10" 
-                  alt={selectedProject.title} 
+                  className="w-full h-full object-cover relative z-10"
+                  alt={`Kavinprasanth project screenshot — ${selectedProject.title}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[var(--bg-primary)] z-10"></div>
               </div>

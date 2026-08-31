@@ -22,19 +22,21 @@ export default function About() {
             <h2 className="font-display text-3xl sm:text-4xl md:text-7xl font-light text-[var(--text-primary)] uppercase tracking-tighter">
               The <span className="font-semibold text-gradient">Story</span>
             </h2>
-            <img src="./profile.png" alt="profile" className="w-14 h-14 sm:w-16 sm:h-16 md:w-40 md:h-40 object-cover rounded-xl md:rounded-3xl shadow-xl border border-[var(--glass-border)]" />
+            <img src="./profile.png" alt="Kavinprasanth KM — Software Developer and AI Specialist" className="w-14 h-14 sm:w-16 sm:h-16 md:w-40 md:h-40 object-cover rounded-xl md:rounded-3xl shadow-xl border border-[var(--glass-border)]" />
           </div>
           <div className="flex flex-col gap-2 md:gap-6 text-xs sm:text-sm md:text-xl text-[var(--text-secondary)] font-light leading-relaxed md:leading-relaxed relative overflow-hidden">
             <p>
-              I build things that live on screens — from full-stack e-commerce platforms 
-              handling real payments to AI systems that generate images from scratch. 
-              I don't just write code, I ship products.
+              Kavinprasanth is a full-stack developer and AI engineer who builds 
+              things that live on screens — from e-commerce platforms handling real 
+              Razorpay payments to GAN-based AI systems that generate images from 
+              scratch. Kavinprasanth doesn't just write code, he ships products.
             </p>
             <p>
-              Currently pursuing B.Tech in Computer Science at Karunya Institute,
-              with hands-on experience across React, Flutter, Python, PyTorch, and 
-              cybersecurity. Google Cloud certified and always building 
-              something new.
+              Currently pursuing B.Tech in Computer Science at Karunya Institute 
+              of Technology, Kavinprasanth has hands-on experience across React, 
+              Flutter, Python, PyTorch, and cybersecurity penetration testing. 
+              Google Cloud Digital Leader certified, and a JWPT-certified 
+              penetration tester from HackersDaddy.
             </p>
           </div>
         </div>

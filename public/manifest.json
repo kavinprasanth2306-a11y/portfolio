@@ -1,8 +1,8 @@
 {
-  "name": "Kavinprasanth KM — Portfolio",
-  "short_name": "KP Portfolio",
-  "description": "Software Engineer, AI Specialist & Full Stack Developer",
-  "start_url": "/",
+  "name": "Kavinprasanth — Developer Portfolio",
+  "short_name": "Kavinprasanth",
+  "description": "Portfolio of Kavinprasanth KM — Software Developer, AI Specialist & Cyber Security Expert",
+  "start_url": "https://kavinprasanth.in/",
   "display": "standalone",
   "background_color": "#030305",
   "theme_color": "#030305",
