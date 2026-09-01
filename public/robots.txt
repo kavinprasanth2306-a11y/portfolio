@@ -1,4 +1,22 @@
 User-agent: *
 Allow: /
 
+# Googlebot & Bingbot specific directives
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Host & Sitemap Declarations
+Host: https://kavinprasanth.in
 Sitemap: https://kavinprasanth.in/sitemap.xml

@@ -10,7 +10,7 @@ const projectsData = [
     mockup: '/projects/wazabi.png',
     context: 'A full-stack premium e-commerce platform with product catalog, cart, wishlist, Razorpay payments, admin dashboard, and user authentication.',
     challenge: 'Building a complete shopping experience with JWT auth, SQLite database, Razorpay payment integration, admin product management, and responsive mobile-first design.',
-    outcome: 'Live e-commerce site with auth (login/register), cart & checkout flow, Razorpay payments, admin dashboard with analytics, wishlist, and search â€” all production-ready.',
+    outcome: 'Live e-commerce site with auth (login/register), cart & checkout flow, Razorpay payments, admin dashboard with analytics, wishlist, and search — all production-ready.',
     link: 'https://wazabi.in',
     tech: ["React", "TypeScript", "Express", "Razorpay"],
     monogram: "WZ",
@@ -20,7 +20,7 @@ const projectsData = [
     title: 'AI Image Generator',
     accent: '#f43f5e',
     mockup: 'https://placehold.co/800x450/1a0a0f/f43f5e?text=AI+Image+Gen',
-    context: 'A GAN-based image generation system with a Flask API and web interface â€” type a class name and generate images from trained models.',
+    context: 'A GAN-based image generation system with a Flask API and web interface — type a class name and generate images from trained models.',
     challenge: 'Training stable GANs and autoencoders on custom datasets, balancing generator/discriminator, and serving models via a real-time Flask API with CUDA support.',
     outcome: 'Trained Generator + Autoencoder models (.pth), REST API for on-demand image generation, and a clean web UI for interacting with the models.',
     link: 'https://github.com/kavinprasanth2306-a11y',
@@ -32,8 +32,8 @@ const projectsData = [
     title: 'CTF Toolkit',
     accent: '#2e8b57',
     mockup: 'https://placehold.co/800x450/0a1a0f/2e8b57?text=CTF+Toolkit',
-    context: 'An automated Capture The Flag challenge solver â€” a comprehensive Python CLI toolkit for recon, web exploitation, crypto, and more.',
-    challenge: 'Building modular solvers that chain together: port scanning â†’ directory busting â†’ SQL injection â†’ XSS detection â†’ crypto decoding, all from a single CLI.',
+    context: 'An automated Capture The Flag challenge solver — a comprehensive Python CLI toolkit for recon, web exploitation, crypto, and more.',
+    challenge: 'Building modular solvers that chain together: port scanning → directory busting → SQL injection → XSS detection → crypto decoding, all from a single CLI.',
     outcome: 'A full CTF automation suite with Nmap wrappers, SQLMap integration, XSS/LFI detection, hash cracking, and auto-solve pipelines.',
     link: 'https://github.com/kavinprasanth2306-a11y',
     tech: ["Python", "Nmap", "SQLMap", "Cyber Sec"],
@@ -44,7 +44,7 @@ const projectsData = [
     title: 'MemSee',
     accent: '#38bdf8',
     mockup: 'https://placehold.co/800x450/050520/38bdf8?text=MemSee',
-    context: 'An interactive addressing mode visualizer for computer architecture â€” watch data flow between IR, ALU, MAR, and Memory in real-time.',
+    context: 'An interactive addressing mode visualizer for computer architecture — watch data flow between IR, ALU, MAR, and Memory in real-time.',
     challenge: 'Simulating CPU data paths with animated visualizations, computing effective addresses live, and integrating Google Gemini AI for contextual explanations.',
     outcome: 'A complete learning tool with real-time CPU simulation, AI-powered insights via Gemini, and support for Immediate, Register, Direct, Indirect, and Indexed modes.',
     link: 'https://github.com/kavinprasanth2306-a11y',
@@ -116,7 +116,11 @@ export default function Projects() {
                  
                  <img 
                     src={project.mockup} 
-                    alt={`Kavinprasanth project â€” ${project.title}`}
+                    alt={`Kavinprasanth KM project — ${project.title}`}
+                    width="400"
+                    height="225"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                  />
                  
@@ -186,7 +190,9 @@ export default function Projects() {
                 <img 
                   src={selectedProject.mockup} 
                   className="w-full h-full object-cover relative z-10"
-                  alt={`Kavinprasanth project screenshot â€” ${selectedProject.title}`}
+                  alt={`Kavinprasanth KM project screenshot — ${selectedProject.title}`}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[var(--bg-primary)] z-10"></div>
               </div>

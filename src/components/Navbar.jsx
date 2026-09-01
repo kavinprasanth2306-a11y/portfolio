@@ -3,11 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { HiMoon, HiSun } from 'react-icons/hi'
 
 const navLinks = [
-  { name: 'About', target: 1 },
-  { name: 'Skills', target: 2 },
-  { name: 'Journey', target: 4 },
-  { name: 'Work', target: 5 },
-  { name: 'Contact', target: 6 },
+  { name: 'About', target: 1, href: '#about' },
+  { name: 'Skills', target: 2, href: '#skills' },
+  { name: 'Certs', target: 3, href: '#certifications' },
+  { name: 'Journey', target: 4, href: '#experience' },
+  { name: 'Work', target: 5, href: '#projects' },
+  { name: 'Contact', target: 6, href: '#contact' },
 ]
 
 export default function Navbar({ theme, toggleTheme, setActiveIndex, activeIndex = 0 }) {
@@ -27,15 +28,21 @@ export default function Navbar({ theme, toggleTheme, setActiveIndex, activeIndex
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
       className="nav-glass"
+      aria-label="Primary Navigation"
     >
       <div className="flex items-center justify-between">
         {/* Logo */}
-        <a href="#" onClick={(e) => handleScrollTo(e, 0)} className="font-display font-bold text-lg md:text-xl text-current hover:opacity-80 transition-opacity">
+        <a 
+          href="/" 
+          onClick={(e) => handleScrollTo(e, 0)} 
+          className="font-display font-bold text-lg md:text-xl text-current hover:opacity-80 transition-opacity"
+          aria-label="Kavinprasanth KM Portfolio Home"
+        >
           <span className="text-gradient">KP</span>
         </a>
 
         {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-6 lg:gap-8">
+        <ul className="hidden md:flex items-center gap-5 lg:gap-7">
           {navLinks.map((link, i) => {
             const isActive = activeIndex === link.target
             return (
@@ -43,16 +50,17 @@ export default function Navbar({ theme, toggleTheme, setActiveIndex, activeIndex
                 key={link.name}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 + i * 0.1 }}
+                transition={{ delay: 0.8 + i * 0.08 }}
               >
                 <a
-                  href={`#${link.name.toLowerCase()}`}
+                  href={link.href}
                   onClick={(e) => handleScrollTo(e, link.target)}
-                  className={`text-sm font-medium tracking-wide transition-colors duration-300 relative ${
+                  className={`text-xs lg:text-sm font-medium tracking-wide transition-colors duration-300 relative ${
                     isActive 
                       ? 'text-[var(--text-primary)]' 
                       : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                   }`}
+                  aria-current={isActive ? 'page' : undefined}
                 >
                   {link.name}
                   {isActive && (
@@ -69,7 +77,7 @@ export default function Navbar({ theme, toggleTheme, setActiveIndex, activeIndex
           <motion.li
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 + navLinks.length * 0.1 }}
+            transition={{ delay: 0.8 + navLinks.length * 0.08 }}
           >
             <button
               onClick={toggleTheme}
@@ -90,7 +98,12 @@ export default function Navbar({ theme, toggleTheme, setActiveIndex, activeIndex
           >
             {theme === 'dark' ? <HiSun size={18} /> : <HiMoon size={18} />}
           </button>
-          <button onClick={() => setMenuOpen(!menuOpen)} className="flex flex-col gap-1.5 p-2">
+          <button 
+            onClick={() => setMenuOpen(!menuOpen)} 
+            className="flex flex-col gap-1.5 p-2"
+            aria-label="Toggle Navigation Menu"
+            aria-expanded={menuOpen}
+          >
             <span className={`w-5 h-[1.5px] bg-current transition-all ${menuOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
             <span className={`w-5 h-[1.5px] bg-current transition-all ${menuOpen ? 'opacity-0' : ''}`} />
             <span className={`w-5 h-[1.5px] bg-current transition-all ${menuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
@@ -108,12 +121,15 @@ export default function Navbar({ theme, toggleTheme, setActiveIndex, activeIndex
           >
             {navLinks.map((link) => (
               <li key={link.name}>
-                <a href={`#${link.name.toLowerCase()}`} onClick={(e) => handleScrollTo(e, link.target)}
+                <a 
+                  href={link.href} 
+                  onClick={(e) => handleScrollTo(e, link.target)}
                   className={`text-sm font-medium ${
                     activeIndex === link.target 
                       ? 'text-cyan-400' 
                       : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                   }`}
+                  aria-current={activeIndex === link.target ? 'page' : undefined}
                 >
                   {link.name}
                 </a>

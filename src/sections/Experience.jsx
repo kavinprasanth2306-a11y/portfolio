@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion'
-import { HiAcademicCap, HiBadgeCheck, HiShieldCheck, HiBriefcase } from 'react-icons/hi'
+import { HiAcademicCap, HiBadgeCheck, HiShieldCheck } from 'react-icons/hi'
 import { SiGooglecloud, SiPython, SiGit } from 'react-icons/si'
 
 const timelineData = [
   {
     type: 'experience',
-    title: 'Penetration Tester â€” Intern',
-    org: 'HackersDaddy Cyber Security Solutions Â· London, UK (Remote)',
-    period: 'Jun 2026 â€” Jul 2026',
+    title: 'Penetration Tester — Intern',
+    org: 'HackersDaddy Cyber Security Solutions · London, UK (Remote)',
+    period: 'Jun 2026 — Jul 2026',
     points: [
       'Conducted web application penetration testing, VAPT assessments, and API security audits across real-world lab environments',
       'Performed reconnaissance, vulnerability scanning, and exploitation using industry-standard offensive security methodologies',
@@ -20,9 +20,9 @@ const timelineData = [
   },
   {
     type: 'education',
-    title: 'B.Tech â€” Computer Science & Engineering',
-    org: 'Karunya Institute of Technology and Sciences Â· Coimbatore',
-    period: '2025 â€” 2029',
+    title: 'B.Tech — Computer Science & Engineering',
+    org: 'Karunya Institute of Technology and Sciences · Coimbatore',
+    period: '2025 — 2029',
     points: [
       'Specializing in Artificial Intelligence, Deep Learning, and Full-Stack Development',
       'Building production-grade projects across web, mobile, and AI domains',
@@ -35,7 +35,7 @@ const timelineData = [
   {
     type: 'cert',
     title: 'Google Cloud Digital Leader',
-    org: 'Google Cloud Â· Credential ID: 5a0ef374',
+    org: 'Google Cloud · Credential ID: 5a0ef374',
     period: 'May 2026',
     points: [
       'Certified in cloud computing concepts, Google Cloud products & services, and digital transformation strategies',
@@ -47,8 +47,8 @@ const timelineData = [
   },
   {
     type: 'cert',
-    title: 'Python Programming â€” 6 Course Track',
-    org: 'DataCamp Â· 13+ hours completed',
+    title: 'Python Programming — 6 Course Track',
+    org: 'DataCamp · 13+ hours completed',
     period: 'Jan 2026',
     points: [
       'Introduction to Python, Intermediate Python for Developers, Data Types in Python',
@@ -60,8 +60,8 @@ const timelineData = [
   },
   {
     type: 'cert',
-    title: 'Git & GitHub â€” 7 Course Track',
-    org: 'DataCamp Â· 22+ hours completed',
+    title: 'Git & GitHub — 7 Course Track',
+    org: 'DataCamp · 22+ hours completed',
     period: 'Jan 2026',
     points: [
       'Introduction to Git, Intermediate Git, Advanced Git, Git Fundamentals',
@@ -74,7 +74,7 @@ const timelineData = [
   {
     type: 'cert',
     title: 'MATLAB Onramp',
-    org: 'MathWorks Â· Self-Paced',
+    org: 'MathWorks · Self-Paced',
     period: 'Jan 2026',
     points: [
       'Completed the official MATLAB fundamentals course with 100% score',
@@ -142,7 +142,7 @@ export default function Experience() {
                   {/* Timeline dot */}
                   <div
                     className={`absolute left-1 md:left-4 top-3 md:top-4 w-4 h-4 md:w-5 md:h-5 rounded-full border-2 flex items-center justify-center bg-[var(--bg-primary)] z-10 group-hover:scale-125 transition-transform duration-300 ${isExperience ? 'ring-2 ring-offset-1 ring-offset-[var(--bg-primary)]' : ''}`}
-                    style={{ borderColor: item.color, ringColor: isExperience ? item.color + '40' : 'transparent' }}
+                    style={{ borderColor: item.color }}
                   >
                     <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full" style={{ backgroundColor: item.color }}></div>
                   </div>

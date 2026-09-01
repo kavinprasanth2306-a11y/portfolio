@@ -17,22 +17,54 @@ import CustomCursor from './components/CustomCursor'
 
 const TOTAL_SECTIONS = 7 // Hero, About, Skills, Certificates, Experience, Projects, Contact
 
+export const SECTION_META = [
+  { hash: '', id: 'hero', title: 'Kavinprasanth KM | Full-Stack Developer, AI Engineer & Cyber Security Specialist' },
+  { hash: '#about', id: 'about', title: 'About Kavinprasanth KM | Full-Stack Developer & AI Specialist' },
+  { hash: '#skills', id: 'skills', title: 'Technical Skills & Arsenal | Kavinprasanth KM' },
+  { hash: '#certifications', id: 'certifications', title: 'Certifications & Credentials | Kavinprasanth KM' },
+  { hash: '#experience', id: 'experience', title: 'Journey & Experience | Kavinprasanth KM' },
+  { hash: '#projects', id: 'projects', title: 'Featured Projects & Work | Kavinprasanth KM' },
+  { hash: '#contact', id: 'contact', title: 'Contact Kavinprasanth KM | Get in Touch' },
+]
+
+function getInitialIndex() {
+  try {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const hash = window.location.hash.toLowerCase()
+      const foundIndex = SECTION_META.findIndex(s => s.hash && s.hash.toLowerCase() === hash)
+      if (foundIndex !== -1) return foundIndex
+    }
+    const saved = sessionStorage.getItem('portfolio-section')
+    return saved ? parseInt(saved, 10) : 0
+  } catch {
+    return 0
+  }
+}
+
 function App() {
   // Theme persistence — reads from localStorage, defaults to 'dark'
   const [theme, setTheme] = useState(() => {
     try { return localStorage.getItem('portfolio-theme') || 'dark' } catch { return 'dark' }
   })
-  const [activeIndex, setActiveIndex] = useState(() => {
-    try {
-      const saved = sessionStorage.getItem('portfolio-section')
-      return saved ? parseInt(saved, 10) : 0
-    } catch { return 0 }
-  })
+  const [activeIndex, setActiveIndex] = useState(getInitialIndex)
   const activeIndexRef = useRef(0)
 
-  // Persist active section so it restores after mobile tab refresh
+  // Persist active section and update URL hash + title for SEO and browser history
   useEffect(() => {
     try { sessionStorage.setItem('portfolio-section', String(activeIndex)) } catch {}
+    
+    const current = SECTION_META[activeIndex] || SECTION_META[0]
+    if (document.title !== current.title) {
+      document.title = current.title
+    }
+
+    const currentHash = window.location.hash
+    const targetHash = current.hash
+    if (targetHash && currentHash.toLowerCase() !== targetHash.toLowerCase()) {
+      window.history.replaceState(null, '', targetHash)
+    } else if (!targetHash && currentHash) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search)
+    }
   }, [activeIndex])
   
   useEffect(() => {
@@ -61,6 +93,21 @@ function App() {
   useEffect(() => {
     activeIndexRef.current = activeIndex
   }, [activeIndex])
+
+  // Listen for browser hash changes (back/forward navigation, direct URL anchors)
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.toLowerCase()
+      const foundIndex = SECTION_META.findIndex(s => s.hash && s.hash.toLowerCase() === hash)
+      if (foundIndex !== -1 && foundIndex !== activeIndexRef.current) {
+        setActiveIndex(foundIndex)
+      } else if (!hash && activeIndexRef.current !== 0) {
+        setActiveIndex(0)
+      }
+    }
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
 
   // Listen for cross-component navigation events
   useEffect(() => {

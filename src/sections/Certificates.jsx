@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { HiCheckBadge } from 'react-icons/hi2'
 import { SiGooglecloud, SiPython, SiGit, SiGithub } from 'react-icons/si'
-import { FaCode, FaShieldAlt } from 'react-icons/fa'
+import { FaCode } from 'react-icons/fa'
 
 const certsData = [
   // Google Cloud
@@ -26,11 +26,8 @@ const certsData = [
   // MATLAB
   { title: 'MATLAB Onramp', issuer: 'MathWorks', color: '#0076A8', icon: FaCode, featured: true },
 
-  // JWPT / Others (from your certificate files)
-  { title: 'JWPT Certification', issuer: 'JWPT', color: '#D4AF37', icon: HiCheckBadge },
-  { title: 'Introduction to Git', issuer: 'DataCamp', color: '#F05032', icon: SiGit },
-  { title: 'Introduction to Git', issuer: 'DataCamp', color: '#F05032', icon: SiGit },
-  { title: 'Git Fundamentals', issuer: 'DataCamp', color: '#F05032', icon: SiGit },
+  // JWPT
+  { title: 'JWPT Certification', issuer: 'JWPT', color: '#D4AF37', icon: HiCheckBadge, featured: true },
 ]
 
 // Remove duplicates by title
@@ -78,7 +75,7 @@ export default function Certificates() {
         transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
         className="absolute top-1/4 left-0 text-[15vw] font-black text-[var(--text-primary)] opacity-[0.03] whitespace-nowrap pointer-events-none select-none leading-none"
       >
-        ACHIEVEMENTS Â· CERTIFICATIONS Â· SKILLS Â· ACHIEVEMENTS Â· CERTIFICATIONS
+        ACHIEVEMENTS · CERTIFICATIONS · SKILLS · ACHIEVEMENTS · CERTIFICATIONS
       </motion.div>
 
       {/* Floating orbs */}
