@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, lazy, Suspense } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { motion, useMotionValue, animate } from 'framer-motion'
 import Navbar from './components/Navbar'
 import ShatterSection from './components/ShatterSection'
@@ -8,14 +8,13 @@ import ProgressBar from './components/ProgressBar'
 import KeyboardHint from './components/KeyboardHint'
 import CommandPalette from './components/CommandPalette'
 import Terminal from './components/Terminal'
-// Lazy load sections for better initial load performance
-const Hero = lazy(() => import('./sections/Hero'))
-const About = lazy(() => import('./sections/About'))
-const Skills = lazy(() => import('./sections/Skills'))
-const Certificates = lazy(() => import('./sections/Certificates'))
-const Experience = lazy(() => import('./sections/Experience'))
-const Projects = lazy(() => import('./sections/Projects'))
-const Contact = lazy(() => import('./sections/Contact'))
+import Hero from './sections/Hero'
+import About from './sections/About'
+import Skills from './sections/Skills'
+import Certificates from './sections/Certificates'
+import Experience from './sections/Experience'
+import Projects from './sections/Projects'
+import Contact from './sections/Contact'
 import CustomCursor from './components/CustomCursor'
 
 const TOTAL_SECTIONS = 7 // Hero, About, Skills, Certificates, Experience, Projects, Contact
@@ -106,8 +105,8 @@ function App() {
   useEffect(() => {
     animate(z, activeIndex * 1000, {
       type: "tween",
-      duration: 0.8,
-      ease: [0.25, 1, 0.35, 1]
+      duration: 0.5,
+      ease: [0.32, 0.72, 0, 1]
     })
   }, [activeIndex, z])
 
@@ -144,7 +143,7 @@ function App() {
   useEffect(() => {
     let isLocked = false
     const maxIndex = TOTAL_SECTIONS - 1
-    const COOLDOWN = 800
+    const COOLDOWN = 600
 
     const navigate = (direction) => {
       if (isLocked) return
@@ -287,15 +286,13 @@ function App() {
             style={{ z }} 
             className="w-full h-full scene-content absolute inset-0"
           >
-            <Suspense fallback={null}>
-              <ShatterSection z={z} index={0} activeIndex={activeIndex}><Hero /></ShatterSection>
-              <ShatterSection z={z} index={1} activeIndex={activeIndex}><About /></ShatterSection>
-              <ShatterSection z={z} index={2} activeIndex={activeIndex}><Skills /></ShatterSection>
-              <ShatterSection z={z} index={3} activeIndex={activeIndex}><Certificates /></ShatterSection>
-              <ShatterSection z={z} index={4} activeIndex={activeIndex}><Experience /></ShatterSection>
-              <ShatterSection z={z} index={5} activeIndex={activeIndex}><Projects /></ShatterSection>
-              <ShatterSection z={z} index={6} activeIndex={activeIndex}><Contact /></ShatterSection>
-            </Suspense>
+            <ShatterSection z={z} index={0} activeIndex={activeIndex}><Hero /></ShatterSection>
+            <ShatterSection z={z} index={1} activeIndex={activeIndex}><About /></ShatterSection>
+            <ShatterSection z={z} index={2} activeIndex={activeIndex}><Skills /></ShatterSection>
+            <ShatterSection z={z} index={3} activeIndex={activeIndex}><Certificates /></ShatterSection>
+            <ShatterSection z={z} index={4} activeIndex={activeIndex}><Experience /></ShatterSection>
+            <ShatterSection z={z} index={5} activeIndex={activeIndex}><Projects /></ShatterSection>
+            <ShatterSection z={z} index={6} activeIndex={activeIndex}><Contact /></ShatterSection>
           </motion.div>
         </div>
       </motion.div>
