@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import { motion, useMotionValue, animate } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import ShatterSection from './components/ShatterSection'
 import SectionDots from './components/SectionDots'
@@ -17,7 +17,7 @@ import Projects from './sections/Projects'
 import Contact from './sections/Contact'
 import CustomCursor from './components/CustomCursor'
 
-const TOTAL_SECTIONS = 7 // Hero, About, Skills, Certificates, Experience, Projects, Contact
+const TOTAL_SECTIONS = 7
 
 export const SECTION_META = [
   { hash: '', id: 'hero', title: 'Kavinprasanth KM | Full-Stack Developer, AI Engineer & Cyber Security Specialist' },
@@ -29,64 +29,55 @@ export const SECTION_META = [
   { hash: '#contact', id: 'contact', title: 'Contact Kavinprasanth KM | Get in Touch' },
 ]
 
+const sections = [Hero, About, Skills, Certificates, Experience, Projects, Contact]
+
 function getInitialIndex() {
   try {
     if (typeof window !== 'undefined' && window.location.hash) {
       const hash = window.location.hash.toLowerCase()
-      const foundIndex = SECTION_META.findIndex(s => s.hash && s.hash.toLowerCase() === hash)
-      if (foundIndex !== -1) return foundIndex
+      const idx = SECTION_META.findIndex(s => s.hash && s.hash.toLowerCase() === hash)
+      if (idx !== -1) return idx
     }
     const saved = sessionStorage.getItem('portfolio-section')
     return saved ? parseInt(saved, 10) : 0
-  } catch {
-    return 0
-  }
+  } catch { return 0 }
 }
 
 function App() {
   const [cmdPaletteOpen, setCmdPaletteOpen] = useState(false)
   const [terminalOpen, setTerminalOpen] = useState(false)
-  // Theme persistence — reads from localStorage, defaults to 'dark'
   const [theme, setTheme] = useState(() => {
     try { return localStorage.getItem('portfolio-theme') || 'dark' } catch { return 'dark' }
   })
   const [activeIndex, setActiveIndex] = useState(getInitialIndex)
   const activeIndexRef = useRef(0)
 
-  // Persist active section and update URL hash + title for SEO and browser history
+  // Persist section + update URL hash + title
   useEffect(() => {
     try { sessionStorage.setItem('portfolio-section', String(activeIndex)) } catch {}
-    
     const current = SECTION_META[activeIndex] || SECTION_META[0]
-    if (document.title !== current.title) {
-      document.title = current.title
-    }
-
-    const currentHash = window.location.hash
+    document.title = current.title
     const targetHash = current.hash
-    if (targetHash && currentHash.toLowerCase() !== targetHash.toLowerCase()) {
+    if (targetHash && window.location.hash.toLowerCase() !== targetHash.toLowerCase()) {
       window.history.replaceState(null, '', targetHash)
-    } else if (!targetHash && currentHash) {
-      window.history.replaceState(null, '', window.location.pathname + window.location.search)
+    } else if (!targetHash && window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname)
     }
   }, [activeIndex])
   
   useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
+    if (theme === 'dark') document.documentElement.classList.add('dark')
+    else document.documentElement.classList.remove('dark')
     try { localStorage.setItem('portfolio-theme', theme) } catch {}
   }, [theme])
 
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark')
-  }
+  const toggleTheme = () => setTheme(prev => prev === 'dark' ? 'light' : 'dark')
 
-  // Cmd+K to toggle command palette
+  useEffect(() => { activeIndexRef.current = activeIndex }, [activeIndex])
+
+  // Cmd+K + Escape
   useEffect(() => {
-    const handleCmdK = (e) => {
+    const handle = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault()
         setCmdPaletteOpen(prev => !prev)
@@ -96,224 +87,129 @@ function App() {
         setTerminalOpen(false)
       }
     }
-    window.addEventListener('keydown', handleCmdK)
-    return () => window.removeEventListener('keydown', handleCmdK)
+    window.addEventListener('keydown', handle)
+    return () => window.removeEventListener('keydown', handle)
   }, [])
 
-  const z = useMotionValue(0)
-
+  // Hash changes
   useEffect(() => {
-    animate(z, activeIndex * 1000, {
-      type: "tween",
-      duration: 0.5,
-      ease: [0.32, 0.72, 0, 1]
-    })
-  }, [activeIndex, z])
-
-  useEffect(() => {
-    activeIndexRef.current = activeIndex
-  }, [activeIndex])
-
-  // Listen for browser hash changes (back/forward navigation, direct URL anchors)
-  useEffect(() => {
-    const handleHashChange = () => {
+    const handle = () => {
       const hash = window.location.hash.toLowerCase()
-      const foundIndex = SECTION_META.findIndex(s => s.hash && s.hash.toLowerCase() === hash)
-      if (foundIndex !== -1 && foundIndex !== activeIndexRef.current) {
-        setActiveIndex(foundIndex)
-      } else if (!hash && activeIndexRef.current !== 0) {
-        setActiveIndex(0)
-      }
+      const idx = SECTION_META.findIndex(s => s.hash && s.hash.toLowerCase() === hash)
+      if (idx !== -1 && idx !== activeIndexRef.current) setActiveIndex(idx)
+      else if (!hash && activeIndexRef.current !== 0) setActiveIndex(0)
     }
-    window.addEventListener('hashchange', handleHashChange)
-    return () => window.removeEventListener('hashchange', handleHashChange)
+    window.addEventListener('hashchange', handle)
+    return () => window.removeEventListener('hashchange', handle)
   }, [])
 
-  // Listen for cross-component navigation events
+  // Cross-component navigation
   useEffect(() => {
-    const handleNavigate = (e) => {
-      const target = e.detail
-      if (typeof target === 'number') setActiveIndex(target)
+    const handle = (e) => {
+      if (typeof e.detail === 'number') setActiveIndex(e.detail)
     }
-    window.addEventListener('navigate-section', handleNavigate)
-    return () => window.removeEventListener('navigate-section', handleNavigate)
+    window.addEventListener('navigate-section', handle)
+    return () => window.removeEventListener('navigate-section', handle)
   }, [])
 
-  // Smart Scroll Decoder
+  // Scroll / Touch / Keyboard navigation
   useEffect(() => {
     let isLocked = false
     const maxIndex = TOTAL_SECTIONS - 1
     const COOLDOWN = 600
 
-    const navigate = (direction) => {
+    const navigate = (dir) => {
       if (isLocked) return
       isLocked = true
-      if (direction > 0) {
-        setActiveIndex(prev => Math.min(prev + 1, maxIndex))
-      } else {
-        setActiveIndex(prev => Math.max(prev - 1, 0))
-      }
+      setActiveIndex(prev => dir > 0 ? Math.min(prev + 1, maxIndex) : Math.max(prev - 1, 0))
       setTimeout(() => { isLocked = false }, COOLDOWN)
     }
 
-    const handleWheel = (e) => {
-      const path = e.composedPath && e.composedPath()
-      if (path) {
-        for (const el of path) {
-          if (el === document || el === window || !el.getBoundingClientRect) continue
-          try {
-            const style = window.getComputedStyle(el)
-            const isScrollable = (style.overflowY === 'auto' || style.overflowY === 'scroll')
-            if (isScrollable && el.scrollHeight > el.clientHeight + 1) {
-              const atTop = el.scrollTop <= 0
-              const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1
-              // Let the element scroll naturally if it's not at its boundary
-              if (e.deltaY < 0 && !atTop) return
-              if (e.deltaY > 0 && !atBottom) return
-            }
-          } catch {
-            continue
+    const isInsideScrollable = (e, delta) => {
+      const path = e.composedPath?.() || []
+      for (const el of path) {
+        if (el === document || el === window || !el.getBoundingClientRect) continue
+        try {
+          const s = window.getComputedStyle(el)
+          if ((s.overflowY === 'auto' || s.overflowY === 'scroll') && el.scrollHeight > el.clientHeight + 1) {
+            if (delta > 0 && el.scrollTop + el.clientHeight < el.scrollHeight - 1) return true
+            if (delta < 0 && el.scrollTop > 0) return true
           }
-        }
+        } catch { continue }
       }
+      return false
+    }
 
+    const onWheel = (e) => {
+      if (isInsideScrollable(e, e.deltaY)) return
       e.preventDefault()
-      const delta = Math.abs(e.deltaY)
-      if (delta > 50) {
-        navigate(e.deltaY > 0 ? 1 : -1)
-      }
+      if (Math.abs(e.deltaY) > 50) navigate(e.deltaY > 0 ? 1 : -1)
     }
 
-    const handleKeyDown = (e) => {
-      if (e.target.tagName.toLowerCase() === 'input' || e.target.tagName.toLowerCase() === 'textarea') return
-      
-      if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-        e.preventDefault()
-        navigate(1)
-      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-        e.preventDefault()
-        navigate(-1)
-      }
+    const onKey = (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return
+      if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); navigate(1) }
+      else if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); navigate(-1) }
     }
 
-    let touchStartY = 0
-    let touchHandled = false
-
-    const handleTouchStart = (e) => {
-      touchStartY = e.touches[0].clientY
-      touchHandled = false
-    }
-
-    const handleTouchMove = (e) => {
-      // Check if touch is inside a scrollable element that still has room to scroll
-      const path = e.composedPath && e.composedPath()
-      if (path) {
-        for (const el of path) {
-          if (el === document || el === window || !el.getBoundingClientRect) continue
-          try {
-            const style = window.getComputedStyle(el)
-            const isScrollable = (style.overflowY === 'auto' || style.overflowY === 'scroll')
-            if (isScrollable && el.scrollHeight > el.clientHeight + 1) {
-              const atTop = el.scrollTop <= 0
-              const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1
-              const touchDelta = touchStartY - e.touches[0].clientY
-              if (touchDelta > 0 && !atBottom) return // scrolling down, not at bottom
-              if (touchDelta < 0 && !atTop) return // scrolling up, not at top
-            }
-          } catch { continue }
-        }
-      }
-      // Prevent browser pull-to-refresh and native scroll
+    let touchY = 0, handled = false
+    const onTouchStart = (e) => { touchY = e.touches[0].clientY; handled = false }
+    const onTouchMove = (e) => {
+      const delta = touchY - e.touches[0].clientY
+      if (isInsideScrollable(e, delta)) return
       e.preventDefault()
     }
-
-    const handleTouchEnd = (e) => {
-      if (touchHandled) return
-      const touchEndY = e.changedTouches[0].clientY
-      const deltaY = touchStartY - touchEndY
-      if (deltaY > 60) {
-        touchHandled = true
-        navigate(1)
-      } else if (deltaY < -60) {
-        touchHandled = true
-        navigate(-1)
-      }
+    const onTouchEnd = (e) => {
+      if (handled) return
+      const delta = touchY - e.changedTouches[0].clientY
+      if (delta > 60) { handled = true; navigate(1) }
+      else if (delta < -60) { handled = true; navigate(-1) }
     }
 
-    window.addEventListener('wheel', handleWheel, { passive: false })
-    window.addEventListener('keydown', handleKeyDown, { passive: false })
-    window.addEventListener('touchstart', handleTouchStart, { passive: false })
-    window.addEventListener('touchmove', handleTouchMove, { passive: false })
-    window.addEventListener('touchend', handleTouchEnd, { passive: false })
-    
+    window.addEventListener('wheel', onWheel, { passive: false })
+    window.addEventListener('keydown', onKey, { passive: false })
+    window.addEventListener('touchstart', onTouchStart, { passive: false })
+    window.addEventListener('touchmove', onTouchMove, { passive: false })
+    window.addEventListener('touchend', onTouchEnd, { passive: false })
     return () => {
-      window.removeEventListener('wheel', handleWheel)
-      window.removeEventListener('keydown', handleKeyDown)
-      window.removeEventListener('touchstart', handleTouchStart)
-      window.removeEventListener('touchmove', handleTouchMove)
-      window.removeEventListener('touchend', handleTouchEnd)
+      window.removeEventListener('wheel', onWheel)
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('touchstart', onTouchStart)
+      window.removeEventListener('touchmove', onTouchMove)
+      window.removeEventListener('touchend', onTouchEnd)
     }
   }, [])
 
   return (
     <div className="h-[100dvh] w-full overflow-hidden relative bg-[var(--bg-primary)]">
       <CustomCursor />
-      
-      {/* Particle Background */}
       <ParticleBackground />
-
-      {/* Top Progress Bar */}
       <ProgressBar activeIndex={activeIndex} />
-
-      {/* Section Progress Dots */}
       <SectionDots activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="fixed inset-0 w-full overflow-hidden pointer-events-none"
-      >
-        <div className="absolute top-0 left-0 w-full z-50 pointer-events-none">
-          <div className="pointer-events-auto">
-            <Navbar theme={theme} toggleTheme={toggleTheme} setActiveIndex={setActiveIndex} activeIndex={activeIndex} />
-          </div>
-        </div>
+      {/* Navbar */}
+      <div className="absolute top-0 left-0 w-full z-50">
+        <Navbar theme={theme} toggleTheme={toggleTheme} setActiveIndex={setActiveIndex} activeIndex={activeIndex} />
+      </div>
 
-        {/* Z-Axis Discrete Snap Layout with Shatter Effect */}
-        <div className="h-[100dvh] w-full scene-container pointer-events-auto">
-          <motion.div 
-            style={{ z }} 
-            className="w-full h-full scene-content absolute inset-0"
-          >
-            <ShatterSection z={z} index={0} activeIndex={activeIndex}><Hero /></ShatterSection>
-            <ShatterSection z={z} index={1} activeIndex={activeIndex}><About /></ShatterSection>
-            <ShatterSection z={z} index={2} activeIndex={activeIndex}><Skills /></ShatterSection>
-            <ShatterSection z={z} index={3} activeIndex={activeIndex}><Certificates /></ShatterSection>
-            <ShatterSection z={z} index={4} activeIndex={activeIndex}><Experience /></ShatterSection>
-            <ShatterSection z={z} index={5} activeIndex={activeIndex}><Projects /></ShatterSection>
-            <ShatterSection z={z} index={6} activeIndex={activeIndex}><Contact /></ShatterSection>
-          </motion.div>
-        </div>
-      </motion.div>
+      {/* Sections — simple stacked crossfade, no 3D */}
+      <div className="h-[100dvh] w-full relative">
+        {sections.map((Section, i) => (
+          <ShatterSection key={i} index={i} activeIndex={activeIndex}>
+            <Section />
+          </ShatterSection>
+        ))}
+      </div>
 
-      {/* Keyboard Navigation Hint (first visit only) */}
       <KeyboardHint />
-
-      {/* Command Palette (Cmd+K) */}
       <CommandPalette
         isOpen={cmdPaletteOpen}
         onClose={() => setCmdPaletteOpen(false)}
         setActiveIndex={setActiveIndex}
         toggleTheme={toggleTheme}
         theme={theme}
-        onOpenTerminal={() => {
-          setCmdPaletteOpen(false)
-          setTerminalOpen(true)
-        }}
+        onOpenTerminal={() => { setCmdPaletteOpen(false); setTerminalOpen(true) }}
       />
-
-      {/* Terminal Mode */}
       <Terminal isOpen={terminalOpen} onClose={() => setTerminalOpen(false)} />
     </div>
   )
