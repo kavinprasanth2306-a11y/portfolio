@@ -4,7 +4,7 @@ const sectionNames = ['Home', 'About', 'Skills', 'Certs', 'Journey', 'Work', 'Co
 
 export default function SectionDots({ activeIndex, setActiveIndex }) {
   return (
-    <div className="fixed right-2 md:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-2 md:gap-3">
+    <div className="fixed right-2 md:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-2 md:gap-3" style={{ contain: 'layout style' }}>
       {sectionNames.map((name, i) => (
         <button
           key={i}

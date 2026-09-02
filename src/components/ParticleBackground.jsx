@@ -17,67 +17,58 @@ export default function ParticleBackground() {
     resize()
     window.addEventListener('resize', resize)
 
-    // Create particles
+    // Fewer particles — no connection lines (removes O(n²) loop)
     const isMobile = window.innerWidth < 768
-    const PARTICLE_COUNT = isMobile ? 20 : 60
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
+    const COUNT = isMobile ? 12 : 25
+
+    for (let i = 0; i < COUNT; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         size: Math.random() * 1.5 + 0.5,
-        speedX: (Math.random() - 0.5) * 0.3,
-        speedY: (Math.random() - 0.5) * 0.3,
-        opacity: Math.random() * 0.4 + 0.1,
-        pulse: Math.random() * Math.PI * 2, // phase offset for pulsing
+        speedX: (Math.random() - 0.5) * 0.2,
+        speedY: (Math.random() - 0.5) * 0.2,
+        opacity: Math.random() * 0.3 + 0.1,
+        phase: Math.random() * Math.PI * 2,
       })
     }
 
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      const time = Date.now() * 0.001
+    let lastTime = 0
+    const FPS_CAP = 30 // Cap at 30fps — smooth enough, half the CPU cost
 
-      particles.forEach(p => {
-        // Move
+    const animate = (timestamp) => {
+      // Throttle to 30fps
+      if (timestamp - lastTime < 1000 / FPS_CAP) {
+        animationId = requestAnimationFrame(animate)
+        return
+      }
+      lastTime = timestamp
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      const time = timestamp * 0.001
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i]
         p.x += p.speedX
         p.y += p.speedY
 
-        // Wrap around edges
         if (p.x < 0) p.x = canvas.width
         if (p.x > canvas.width) p.x = 0
         if (p.y < 0) p.y = canvas.height
         if (p.y > canvas.height) p.y = 0
 
-        // Pulsing opacity
-        const pulse = Math.sin(time * 0.8 + p.pulse) * 0.15 + p.opacity
+        const pulse = Math.sin(time * 0.5 + p.phase) * 0.1 + p.opacity
 
-        // Draw particle
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
         ctx.fillStyle = `rgba(56, 189, 248, ${pulse})`
         ctx.fill()
-      })
-
-      // Draw connections between nearby particles
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x
-          const dy = particles[i].y - particles[j].y
-          const dist = Math.sqrt(dx * dx + dy * dy)
-          if (dist < (isMobile ? 80 : 120)) {
-            ctx.beginPath()
-            ctx.moveTo(particles[i].x, particles[i].y)
-            ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = `rgba(56, 189, 248, ${0.06 * (1 - dist / 120)})`
-            ctx.lineWidth = 0.5
-            ctx.stroke()
-          }
-        }
       }
 
       animationId = requestAnimationFrame(animate)
     }
 
-    animate()
+    animationId = requestAnimationFrame(animate)
 
     return () => {
       cancelAnimationFrame(animationId)
@@ -88,7 +79,8 @@ export default function ParticleBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 z-0 pointer-events-none opacity-60 dark:opacity-40"
+      className="fixed inset-0 z-0 pointer-events-none opacity-50 dark:opacity-30"
+      style={{ willChange: 'auto' }}
     />
   )
 }
