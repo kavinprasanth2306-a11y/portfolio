@@ -1,37 +1,16 @@
-import { motion, useTransform } from 'framer-motion'
-
-export default function ShatterSection({ children, z, index, activeIndex }) {
-  const isVisible = Math.abs(activeIndex - index) <= 1
-
-  // Simple opacity fade — no scale transform (scale causes heavy repaints)
-  const contentOpacity = useTransform(
-    z,
-    [
-      index * 1000 - 600,
-      index * 1000 - 50,
-      index * 1000 + 50,
-      index * 1000 + 600
-    ],
-    [0, 1, 1, 0]
-  )
+export default function ShatterSection({ children, index, activeIndex }) {
+  const isActive = activeIndex === index
 
   return (
     <section
-      className="absolute inset-0 w-full h-full"
+      className="absolute inset-0 w-full h-full transition-opacity duration-500 ease-out"
       style={{
-        transform: `translateZ(${-index * 1000}px)`,
-        pointerEvents: activeIndex === index ? 'auto' : 'none',
-        // Hide far-away sections without unmounting (avoids remount lag)
-        visibility: isVisible ? 'visible' : 'hidden',
-        contain: 'layout style paint',
+        opacity: isActive ? 1 : 0,
+        pointerEvents: isActive ? 'auto' : 'none',
+        zIndex: isActive ? 10 : 0,
       }}
     >
-      <motion.div 
-        style={{ opacity: contentOpacity }}
-        className="w-full h-full"
-      >
-        {children}
-      </motion.div>
+      {children}
     </section>
   )
 }

@@ -94,16 +94,6 @@
     opacity: 1;
   }
 
-  /* 3D Scene Utilities - Kept intact for the Z-Axis layout */
-  .scene-container {
-    perspective: 1500px;
-    transform-style: preserve-3d;
-  }
-  
-  .scene-content {
-    transform-style: preserve-3d;
-  }
-  
   /* Text gradient utility */
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400;
