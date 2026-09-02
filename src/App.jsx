@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, lazy, Suspense } from 'react'
 import { motion, useMotionValue, animate } from 'framer-motion'
 import Navbar from './components/Navbar'
 import ShatterSection from './components/ShatterSection'
@@ -6,13 +6,16 @@ import SectionDots from './components/SectionDots'
 import ParticleBackground from './components/ParticleBackground'
 import ProgressBar from './components/ProgressBar'
 import KeyboardHint from './components/KeyboardHint'
-import Hero from './sections/Hero'
-import About from './sections/About'
-import Projects from './sections/Projects'
-import Contact from './sections/Contact'
-import Certificates from './sections/Certificates'
-import Skills from './sections/Skills'
-import Experience from './sections/Experience'
+import CommandPalette from './components/CommandPalette'
+import Terminal from './components/Terminal'
+// Lazy load sections for better initial load performance
+const Hero = lazy(() => import('./sections/Hero'))
+const About = lazy(() => import('./sections/About'))
+const Skills = lazy(() => import('./sections/Skills'))
+const Certificates = lazy(() => import('./sections/Certificates'))
+const Experience = lazy(() => import('./sections/Experience'))
+const Projects = lazy(() => import('./sections/Projects'))
+const Contact = lazy(() => import('./sections/Contact'))
 import CustomCursor from './components/CustomCursor'
 
 const TOTAL_SECTIONS = 7 // Hero, About, Skills, Certificates, Experience, Projects, Contact
@@ -42,6 +45,8 @@ function getInitialIndex() {
 }
 
 function App() {
+  const [cmdPaletteOpen, setCmdPaletteOpen] = useState(false)
+  const [terminalOpen, setTerminalOpen] = useState(false)
   // Theme persistence — reads from localStorage, defaults to 'dark'
   const [theme, setTheme] = useState(() => {
     try { return localStorage.getItem('portfolio-theme') || 'dark' } catch { return 'dark' }
@@ -79,6 +84,22 @@ function App() {
   const toggleTheme = () => {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark')
   }
+
+  // Cmd+K to toggle command palette
+  useEffect(() => {
+    const handleCmdK = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        setCmdPaletteOpen(prev => !prev)
+      }
+      if (e.key === 'Escape') {
+        setCmdPaletteOpen(false)
+        setTerminalOpen(false)
+      }
+    }
+    window.addEventListener('keydown', handleCmdK)
+    return () => window.removeEventListener('keydown', handleCmdK)
+  }, [])
 
   const z = useMotionValue(0)
 
@@ -266,19 +287,37 @@ function App() {
             style={{ z }} 
             className="w-full h-full scene-content absolute inset-0"
           >
-            <ShatterSection z={z} index={0} activeIndex={activeIndex}><Hero /></ShatterSection>
-            <ShatterSection z={z} index={1} activeIndex={activeIndex}><About /></ShatterSection>
-            <ShatterSection z={z} index={2} activeIndex={activeIndex}><Skills /></ShatterSection>
-            <ShatterSection z={z} index={3} activeIndex={activeIndex}><Certificates /></ShatterSection>
-            <ShatterSection z={z} index={4} activeIndex={activeIndex}><Experience /></ShatterSection>
-            <ShatterSection z={z} index={5} activeIndex={activeIndex}><Projects /></ShatterSection>
-            <ShatterSection z={z} index={6} activeIndex={activeIndex}><Contact /></ShatterSection>
+            <Suspense fallback={null}>
+              <ShatterSection z={z} index={0} activeIndex={activeIndex}><Hero /></ShatterSection>
+              <ShatterSection z={z} index={1} activeIndex={activeIndex}><About /></ShatterSection>
+              <ShatterSection z={z} index={2} activeIndex={activeIndex}><Skills /></ShatterSection>
+              <ShatterSection z={z} index={3} activeIndex={activeIndex}><Certificates /></ShatterSection>
+              <ShatterSection z={z} index={4} activeIndex={activeIndex}><Experience /></ShatterSection>
+              <ShatterSection z={z} index={5} activeIndex={activeIndex}><Projects /></ShatterSection>
+              <ShatterSection z={z} index={6} activeIndex={activeIndex}><Contact /></ShatterSection>
+            </Suspense>
           </motion.div>
         </div>
       </motion.div>
 
       {/* Keyboard Navigation Hint (first visit only) */}
       <KeyboardHint />
+
+      {/* Command Palette (Cmd+K) */}
+      <CommandPalette
+        isOpen={cmdPaletteOpen}
+        onClose={() => setCmdPaletteOpen(false)}
+        setActiveIndex={setActiveIndex}
+        toggleTheme={toggleTheme}
+        theme={theme}
+        onOpenTerminal={() => {
+          setCmdPaletteOpen(false)
+          setTerminalOpen(true)
+        }}
+      />
+
+      {/* Terminal Mode */}
+      <Terminal isOpen={terminalOpen} onClose={() => setTerminalOpen(false)} />
     </div>
   )
 }

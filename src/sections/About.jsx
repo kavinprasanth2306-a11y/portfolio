@@ -24,6 +24,7 @@ export default function About() {
             </h2>
             <img 
               src="/profile.png" 
+              loading="lazy"
               alt="Kavinprasanth KM — Full-Stack Developer and AI Specialist" 
               width="160"
               height="160"

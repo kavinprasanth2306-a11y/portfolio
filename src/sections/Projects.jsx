@@ -8,9 +8,10 @@ const projectsData = [
     title: 'Wazabi',
     accent: '#818cf8',
     mockup: '/projects/wazabi.png',
-    context: 'A full-stack premium e-commerce platform with product catalog, cart, wishlist, Razorpay payments, admin dashboard, and user authentication.',
-    challenge: 'Building a complete shopping experience with JWT auth, SQLite database, Razorpay payment integration, admin product management, and responsive mobile-first design.',
-    outcome: 'Live e-commerce site with auth (login/register), cart & checkout flow, Razorpay payments, admin dashboard with analytics, wishlist, and search — all production-ready.',
+    problem: 'Needed a production-grade e-commerce platform with real payment processing, user auth, and admin controls — not just a mock storefront.',
+    architecture: 'React + TypeScript frontend with Framer Motion animations, Express.js backend with JWT auth, SQLite database, and Razorpay payment gateway integration.',
+    decisions: 'Chose SQLite over Postgres for zero-config deployment. Used JWT over sessions for stateless auth. Built a custom admin dashboard instead of using a CMS.',
+    outcome: 'Live at wazabi.in — handles real INR transactions, 6 product categories, full cart-to-checkout flow, and admin analytics.',
     link: 'https://wazabi.in',
     tech: ["React", "TypeScript", "Express", "Razorpay"],
     monogram: "WZ",
@@ -20,9 +21,10 @@ const projectsData = [
     title: 'AI Image Generator',
     accent: '#f43f5e',
     mockup: 'https://placehold.co/800x450/1a0a0f/f43f5e?text=AI+Image+Gen',
-    context: 'A GAN-based image generation system with a Flask API and web interface — type a class name and generate images from trained models.',
-    challenge: 'Training stable GANs and autoencoders on custom datasets, balancing generator/discriminator, and serving models via a real-time Flask API with CUDA support.',
-    outcome: 'Trained Generator + Autoencoder models (.pth), REST API for on-demand image generation, and a clean web UI for interacting with the models.',
+    problem: 'Wanted to understand generative AI from the ground up — not just calling APIs, but training models from scratch on custom datasets.',
+    architecture: 'Custom GAN (Generator + Discriminator) and Autoencoder built in PyTorch. Flask REST API serves the models. HTML/CSS/JS frontend for interaction.',
+    decisions: 'Trained on CUDA GPU for speed. Saved models as .pth files for portability. Used Flask over FastAPI for simplicity. Built class-based generation — type "dog" and get a dog.',
+    outcome: 'Working generator.pth + autoencoder.pth models. REST API generates images on demand. Clean web UI for class-based image generation.',
     link: 'https://github.com/kavinprasanth2306-a11y',
     tech: ["Python", "PyTorch", "Flask", "GANs"],
     monogram: "AI",
@@ -32,9 +34,10 @@ const projectsData = [
     title: 'CTF Toolkit',
     accent: '#2e8b57',
     mockup: 'https://placehold.co/800x450/0a1a0f/2e8b57?text=CTF+Toolkit',
-    context: 'An automated Capture The Flag challenge solver — a comprehensive Python CLI toolkit for recon, web exploitation, crypto, and more.',
-    challenge: 'Building modular solvers that chain together: port scanning → directory busting → SQL injection → XSS detection → crypto decoding, all from a single CLI.',
-    outcome: 'A full CTF automation suite with Nmap wrappers, SQLMap integration, XSS/LFI detection, hash cracking, and auto-solve pipelines.',
+    problem: 'CTF competitions require running 10+ tools manually. Needed an automation pipeline that chains recon → exploitation → crypto → reporting in one CLI.',
+    architecture: 'Modular Python CLI with separate modules for recon (Nmap, subdomain enum), web (SQLi, XSS, LFI), crypto (encodings, hashes), and auto-solve pipelines.',
+    decisions: 'Wrapped Nmap and SQLMap instead of reimplementing. Added auto_solve.bat/sh for one-click execution. Config-driven so tools can be swapped without code changes.',
+    outcome: 'Complete CTF automation suite — port scan, directory bust, SQL inject, XSS detect, hash crack, and generate reports, all from a single command.',
     link: 'https://github.com/kavinprasanth2306-a11y',
     tech: ["Python", "Nmap", "SQLMap", "Cyber Sec"],
     monogram: "CT",
@@ -44,9 +47,10 @@ const projectsData = [
     title: 'MemSee',
     accent: '#38bdf8',
     mockup: 'https://placehold.co/800x450/050520/38bdf8?text=MemSee',
-    context: 'An interactive addressing mode visualizer for computer architecture — watch data flow between IR, ALU, MAR, and Memory in real-time.',
-    challenge: 'Simulating CPU data paths with animated visualizations, computing effective addresses live, and integrating Google Gemini AI for contextual explanations.',
-    outcome: 'A complete learning tool with real-time CPU simulation, AI-powered insights via Gemini, and support for Immediate, Register, Direct, Indirect, and Indexed modes.',
+    problem: 'Students struggle to understand CPU addressing modes from textbooks. Needed an interactive tool that visualizes data flow in real-time.',
+    architecture: 'React 19 + TypeScript SPA with Tailwind CSS. Simulates IR, ALU, MAR, and Memory components. Integrated Google Gemini AI for contextual explanations.',
+    decisions: 'Used React 19 for concurrent rendering. Chose Gemini AI over OpenAI for free tier. Built custom SVG animations instead of Canvas for accessibility.',
+    outcome: 'Interactive learning tool with real-time CPU simulation, AI-powered insights, and support for 6 addressing modes. Used in coursework.',
     link: 'https://github.com/kavinprasanth2306-a11y',
     tech: ["React", "TypeScript", "Gemini AI", "Vite"],
     monogram: "MS",
@@ -141,7 +145,7 @@ export default function Projects() {
                   {project.title}
                 </h3>
                 <p className="text-[var(--text-secondary)] text-[10px] md:text-xs line-clamp-2 leading-relaxed mb-2 md:mb-3">
-                  {project.context}
+                  {project.problem}
                 </p>
                 
                 <div className="mt-auto flex items-center gap-2 text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-[var(--text-primary)] opacity-70 group-hover:opacity-100 translate-x-[-5px] group-hover:translate-x-0 transition-all duration-300">
@@ -203,7 +207,7 @@ export default function Projects() {
                     {selectedProject.title}
                   </h3>
                   <p className="font-sans text-sm md:text-base lg:text-lg text-[var(--text-secondary)] font-light leading-relaxed">
-                    {selectedProject.context}
+                    {selectedProject.problem}
                   </p>
                   <div className="flex flex-wrap gap-2 mt-3">
                     {selectedProject.tech.map((t, i) => (
@@ -216,15 +220,23 @@ export default function Projects() {
                 <div className="flex flex-col gap-4 md:gap-6">
                   <div className="flex flex-col gap-2 p-4 md:p-5 rounded-2xl bg-[var(--text-primary)]/5 border border-[var(--glass-border)] backdrop-blur-md relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-1 h-full" style={{ backgroundColor: selectedProject.accent, opacity: 0.5 }}></div>
-                    <h4 className="font-sans text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--text-secondary)]">The Challenge</h4>
+                    <h4 className="font-sans text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--text-secondary)]">Architecture & Stack</h4>
                     <p className="font-sans text-xs md:text-sm text-[var(--text-primary)] font-light leading-relaxed">
-                      {selectedProject.challenge}
+                      {selectedProject.architecture}
                     </p>
                   </div>
 
                   <div className="flex flex-col gap-2 p-4 md:p-5 rounded-2xl bg-[var(--text-primary)]/5 border border-[var(--glass-border)] backdrop-blur-md relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-1 h-full bg-cyan-500/50"></div>
-                    <h4 className="font-sans text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--text-secondary)]">The Outcome</h4>
+                    <div className="absolute top-0 left-0 w-1 h-full bg-amber-500/50"></div>
+                    <h4 className="font-sans text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--text-secondary)]">Key Decisions</h4>
+                    <p className="font-sans text-xs md:text-sm text-[var(--text-primary)] font-light leading-relaxed">
+                      {selectedProject.decisions}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col gap-2 p-4 md:p-5 rounded-2xl bg-[var(--text-primary)]/5 border border-[var(--glass-border)] backdrop-blur-md relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-1 h-full bg-green-500/50"></div>
+                    <h4 className="font-sans text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--text-secondary)]">Outcome & Impact</h4>
                     <p className="font-sans text-xs md:text-sm text-[var(--text-primary)] font-light leading-relaxed">
                       {selectedProject.outcome}
                     </p>
