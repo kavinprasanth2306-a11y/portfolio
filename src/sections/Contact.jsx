@@ -1,13 +1,20 @@
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
-import { HiPaperAirplane } from 'react-icons/hi'
+import { HiPaperAirplane, HiClipboardCopy, HiCheck } from 'react-icons/hi'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [copied, setCopied] = useState(false)
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  const copyEmail = () => {
+    navigator.clipboard?.writeText('kavinprasanth2306@gmail.com')
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
   }
 
   const handleSubmit = (e) => {
@@ -53,13 +60,23 @@ export default function Contact() {
             Drop a message and I'll get back to you soon.
           </p>
 
-          <button
-            onClick={openGmail}
-            className="inline-flex items-center gap-3 px-4 py-2 md:px-6 md:py-3 rounded-full border border-[var(--glass-border)] bg-[var(--glass-bg)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-all duration-300 text-xs md:text-sm font-medium text-[var(--text-primary)] w-fit mb-5 md:mb-8"
-            aria-label="Open Gmail to send email"
-          >
-            <span>kavinprasanth2306@gmail.com</span>
-          </button>
+          <div className="flex items-center gap-2 mb-5 md:mb-8">
+            <button
+              onClick={openGmail}
+              className="inline-flex items-center gap-3 px-4 py-2 md:px-6 md:py-3 rounded-full border border-[var(--glass-border)] bg-[var(--glass-bg)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-all duration-300 text-xs md:text-sm font-medium text-[var(--text-primary)] w-fit"
+              aria-label="Open Gmail to send email"
+            >
+              <span>kavinprasanth2306@gmail.com</span>
+            </button>
+            <button
+              onClick={copyEmail}
+              className="w-9 h-9 md:w-11 md:h-11 flex items-center justify-center rounded-full border border-[var(--glass-border)] bg-[var(--glass-bg)] hover:border-cyan-400 hover:text-cyan-400 transition-all duration-300 text-[var(--text-secondary)] flex-shrink-0"
+              aria-label="Copy email address"
+              title={copied ? 'Copied!' : 'Copy email'}
+            >
+              {copied ? <HiCheck size={16} className="text-green-400" /> : <HiClipboardCopy size={16} />}
+            </button>
+          </div>
 
           <div className="flex gap-3 md:gap-4">
             <a href="https://github.com/kavinprasanth2306-a11y" target="_blank" rel="noopener noreferrer"

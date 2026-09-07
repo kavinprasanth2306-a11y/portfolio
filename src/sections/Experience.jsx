@@ -9,9 +9,10 @@ const timelineData = [
     org: 'HackersDaddy Cyber Security Solutions · London, UK (Remote)',
     period: 'Jun 2026 — Jul 2026',
     points: [
-      'Conducted web application penetration testing, VAPT assessments, and API security audits across real-world lab environments',
-      'Performed reconnaissance, vulnerability scanning, and exploitation using industry-standard offensive security methodologies',
-      'Cleared the Junior WebApp Penetration Tester (JWPT) certification examination',
+      'Performed OWASP Top 10 vulnerability assessments and full VAPT audits on real-world web application lab environments',
+      'Used Burp Suite, Nmap, and OWASP ZAP for reconnaissance, scanning, and manual exploitation of security flaws',
+      'Conducted API security testing and documented findings with severity ratings and remediation reports',
+      'Cleared the Junior WebApp Penetration Tester (JWPT) certification exam',
       'Selected through the competitive "Hashes Over Roses 3.0" cybersecurity event',
     ],
     icon: HiShieldCheck,
