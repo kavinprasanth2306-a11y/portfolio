@@ -22,6 +22,8 @@
     --glass-border: #e4e4e7;
     --glass-shadow: rgba(0, 0, 0, 0.05);
     --accent-glow: rgba(56, 189, 248, 0.1);
+    --accent: #0e7490; /* Deeper teal for WCAG AA contrast on light bg */
+    --accent-soft: #0f766e;
   }
 
   .dark {
@@ -32,6 +34,8 @@
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-shadow: rgba(0, 0, 0, 0.6);
     --accent-glow: rgba(129, 140, 248, 0.15); /* Indigo glow */
+    --accent: #22d3ee; /* Bright neon cyan for dark bg */
+    --accent-soft: #2dd4bf;
   }
 
   body {
@@ -97,6 +101,11 @@
   /* Text gradient utility */
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400;
+  }
+
+  /* Accent color that adapts for WCAG AA contrast — deep teal in light, neon cyan in dark */
+  .text-accent {
+    color: var(--accent);
   }
 
   /* Pop utility for headings on glass */

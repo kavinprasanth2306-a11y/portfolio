@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { HiArrowRight, HiX } from 'react-icons/hi'
+import { HiArrowRight, HiX, HiExternalLink } from 'react-icons/hi'
+import { FaGithub } from 'react-icons/fa'
 import { GlassCracks, getCrackMask } from './Skills'
 
 const projectsData = [
@@ -92,7 +93,7 @@ export default function Projects() {
       >
         <div className="sticky top-0 z-30 pt-2 md:pt-12 pb-3 md:pb-6 bg-[var(--bg-secondary)]/90 backdrop-blur-xl border-b border-[var(--glass-border)] mb-4 md:mb-12 px-3 md:px-10">
           <h2 className="text-2xl md:text-6xl font-bold text-[var(--text-primary)] mb-1 md:mb-4 uppercase tracking-tighter" id="projects">
-            Featured <span className="text-teal-400">Work</span>
+            Featured <span className="text-accent">Work</span>
           </h2>
           <div className="w-24 h-1 bg-[var(--glass-border)] rounded-full" />
         </div>
@@ -128,6 +129,13 @@ export default function Projects() {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                  />
                  
+                 {/* Browser traffic-light bar */}
+                 <div className="absolute top-0 left-0 w-full h-4 md:h-5 bg-black/50 backdrop-blur-md flex items-center gap-1 px-2 z-10">
+                   <span className="w-1.5 h-1.5 rounded-full bg-red-500/80"></span>
+                   <span className="w-1.5 h-1.5 rounded-full bg-yellow-500/80"></span>
+                   <span className="w-1.5 h-1.5 rounded-full bg-green-500/80"></span>
+                 </div>
+
                  <div className="absolute top-2 right-2 flex gap-1">
                     {project.tech.slice(0, 1).map((t, i) => (
                       <span key={i} className="px-2 py-0.5 text-[7px] md:text-[8px] font-bold tracking-widest uppercase bg-black/40 text-white backdrop-blur-md rounded-full border border-white/10">
@@ -135,13 +143,28 @@ export default function Projects() {
                       </span>
                     ))}
                  </div>
+
+                 {/* Hover action pill */}
+                 <div className="absolute inset-0 flex items-end justify-center gap-2 pb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/70 to-transparent z-20">
+                   {project.link && project.link !== '#' && (
+                     <a
+                       href={project.link}
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       onClick={(e) => e.stopPropagation()}
+                       className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/90 text-black text-[8px] md:text-[9px] font-bold uppercase tracking-wider hover:bg-white transition-colors"
+                     >
+                       {project.link.includes('github') ? <><FaGithub size={10} /> Code</> : <><HiExternalLink size={10} /> Live</>}
+                     </a>
+                   )}
+                 </div>
               </div>
 
               {/* Project Info Area */}
               <div className="w-full h-1/2 p-3 md:p-5 relative z-20 flex flex-col justify-center bg-[var(--bg-secondary)]/60 backdrop-blur-md border-t border-[var(--glass-border)]">
                 <div className="absolute top-0 left-0 w-full h-[2px] opacity-80 transition-opacity duration-300 group-hover:opacity-100" style={{ backgroundColor: project.accent }}></div>
                 
-                <h3 className="text-sm md:text-lg font-bold text-[var(--text-primary)] mb-1 tracking-tight group-hover:text-teal-500 transition-colors duration-300 line-clamp-1">
+                <h3 className="text-sm md:text-lg font-bold text-[var(--text-primary)] mb-1 tracking-tight group-hover:text-accent transition-colors duration-300 line-clamp-1">
                   {project.title}
                 </h3>
                 <p className="text-[var(--text-secondary)] text-[10px] md:text-xs line-clamp-2 leading-relaxed mb-2 md:mb-3">
