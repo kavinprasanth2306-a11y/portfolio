@@ -17,21 +17,46 @@ export default function Contact() {
     setTimeout(() => setCopied(false), 2000)
   }
 
+  // Opens the native mail app on mobile. On Android, uses an intent:// URL to
+  // force the Gmail/mail app instead of letting the browser hijack mailto:.
+  const openMail = (subject, body) => {
+    const to = 'kavinprasanth2306@gmail.com'
+    const ua = navigator.userAgent || ''
+    const isAndroid = /android/i.test(ua)
+    const query = [
+      subject ? `subject=${encodeURIComponent(subject)}` : '',
+      body ? `body=${encodeURIComponent(body)}` : '',
+    ].filter(Boolean).join('&')
+
+    if (isAndroid) {
+      // Android intent — forces the Gmail app compose screen
+      const intentUrl = `intent://compose?to=${to}${query ? '&' + query : ''}#Intent;scheme=mailto;package=com.google.android.gm;end`
+      window.location.href = intentUrl
+      // Fallback to mailto after a short delay if the app didn't open
+      setTimeout(() => {
+        window.location.href = `mailto:${to}${query ? '?' + query : ''}`
+      }, 500)
+    } else {
+      // iOS and others — mailto opens the default mail app reliably
+      window.location.href = `mailto:${to}${query ? '?' + query : ''}`
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
     const to = 'kavinprasanth2306@gmail.com'
     const rawSubject = `Portfolio Contact from ${formData.name}`
     const rawBody = `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
-    const subject = encodeURIComponent(rawSubject)
-    const body = encodeURIComponent(rawBody)
 
     const isMobile = window.innerWidth < 768
     if (isMobile) {
       // On phones, open the native mail app with everything pre-filled
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`
+      openMail(rawSubject, rawBody)
     } else {
       // On desktop, open Gmail compose in a popup
+      const subject = encodeURIComponent(rawSubject)
+      const body = encodeURIComponent(rawBody)
       const gmailUrl = `https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=cm&to=${to}&su=${subject}&body=${body}`
       window.open(gmailUrl, '_blank', 'width=680,height=600,scrollbars=yes')
     }
@@ -40,7 +65,7 @@ export default function Contact() {
   const openGmail = () => {
     const isMobile = window.innerWidth < 768
     if (isMobile) {
-      window.location.href = 'mailto:kavinprasanth2306@gmail.com'
+      openMail()
     } else {
       const gmailUrl = `https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=cm&to=kavinprasanth2306@gmail.com`
       window.open(gmailUrl, '_blank', 'width=680,height=600,scrollbars=yes')
