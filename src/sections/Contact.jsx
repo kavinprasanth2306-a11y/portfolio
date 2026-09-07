@@ -21,19 +21,30 @@ export default function Contact() {
     e.preventDefault()
 
     const to = 'kavinprasanth2306@gmail.com'
-    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`)
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)
+    const rawSubject = `Portfolio Contact from ${formData.name}`
+    const rawBody = `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    const subject = encodeURIComponent(rawSubject)
+    const body = encodeURIComponent(rawBody)
 
-    const gmailUrl = `https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=cm&to=${to}&su=${subject}&body=${body}`
-    // On mobile, open in new tab; on desktop, open as popup
     const isMobile = window.innerWidth < 768
-    window.open(gmailUrl, '_blank', isMobile ? '' : 'width=680,height=600,scrollbars=yes')
+    if (isMobile) {
+      // On phones, open the native mail app with everything pre-filled
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`
+    } else {
+      // On desktop, open Gmail compose in a popup
+      const gmailUrl = `https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=cm&to=${to}&su=${subject}&body=${body}`
+      window.open(gmailUrl, '_blank', 'width=680,height=600,scrollbars=yes')
+    }
   }
 
   const openGmail = () => {
-    const gmailUrl = `https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=cm&to=kavinprasanth2306@gmail.com`
     const isMobile = window.innerWidth < 768
-    window.open(gmailUrl, '_blank', isMobile ? '' : 'width=680,height=600,scrollbars=yes')
+    if (isMobile) {
+      window.location.href = 'mailto:kavinprasanth2306@gmail.com'
+    } else {
+      const gmailUrl = `https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=cm&to=kavinprasanth2306@gmail.com`
+      window.open(gmailUrl, '_blank', 'width=680,height=600,scrollbars=yes')
+    }
   }
 
   return (
