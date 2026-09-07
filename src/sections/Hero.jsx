@@ -1,5 +1,6 @@
 import { TypeAnimation } from 'react-type-animation'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
+import { HiDownload } from 'react-icons/hi'
 import { motion } from 'framer-motion'
 
 export default function Hero() {
@@ -14,6 +15,20 @@ export default function Hero() {
         transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
         className="glass-card p-5 sm:p-8 md:p-20 max-w-6xl w-full flex flex-col items-center text-center relative z-10"
       >
+        {/* Availability Badge */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="inline-flex items-center gap-2 px-3 py-1 md:px-4 md:py-1.5 rounded-full border border-green-500/30 bg-green-500/10 mb-4 md:mb-6"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+          </span>
+          <span className="text-[9px] md:text-xs font-semibold text-green-400 uppercase tracking-wider">Available for Internships & Opportunities</span>
+        </motion.div>
+
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -46,6 +61,16 @@ export default function Hero() {
           />
         </motion.div>
 
+        {/* Positioning statement */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.1 }}
+          className="text-xs sm:text-sm md:text-base text-[var(--text-secondary)] font-light max-w-lg -mt-4 md:-mt-8 mb-8 md:mb-10"
+        >
+          Specializing in Full-Stack Web Development, AI Systems & Cyber Security
+        </motion.p>
+
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -57,6 +82,13 @@ export default function Hero() {
             className="px-6 py-3 md:px-10 md:py-5 rounded-full bg-[var(--text-primary)] text-[var(--bg-primary)] font-bold text-xs md:text-sm uppercase tracking-wider hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all duration-300">
             Explore Work
           </button>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 md:px-10 md:py-5 rounded-full border border-[var(--glass-border)] bg-[var(--glass-bg)] text-[var(--text-primary)] font-bold text-xs md:text-sm uppercase tracking-wider hover:scale-105 hover:border-cyan-400 transition-all duration-300 flex items-center gap-2">
+            <HiDownload /> Resume
+          </a>
           <div className="flex gap-3 md:gap-4">
             <a href="https://github.com/kavinprasanth2306-a11y" target="_blank" rel="noopener noreferrer"
               aria-label="GitHub profile"
