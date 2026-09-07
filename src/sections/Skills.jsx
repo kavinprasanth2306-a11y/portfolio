@@ -3,38 +3,53 @@ import { FaHtml5, FaJs, FaPython, FaLinux, FaReact, FaNodeJs, FaGitAlt } from 'r
 import { SiFlutter, SiPytorch, SiTypescript, SiTailwindcss, SiFirebase, SiGooglecloud, SiDart, SiVite, SiFlask, SiSqlite } from 'react-icons/si'
 import { HiShieldCheck, HiCode } from 'react-icons/hi'
 
-const skillsData = [
-  // Frontend
-  { name: 'React', icon: FaReact, color: '#61DAFB' },
-  { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
-  { name: 'JavaScript', icon: FaJs, color: '#f7df1e' },
-  { name: 'HTML & CSS', icon: FaHtml5, color: '#e34f26' },
-  { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#06B6D4' },
-  { name: 'Vite', icon: SiVite, color: '#646CFF' },
-
-  // Mobile
-  { name: 'Flutter', icon: SiFlutter, color: '#02569B' },
-  { name: 'Dart', icon: SiDart, color: '#0175C2' },
-
-  // Backend & DB
-  { name: 'Node.js', icon: FaNodeJs, color: '#339933' },
-  { name: 'Flask', icon: SiFlask, color: '#ffffff' },
-  { name: 'SQLite', icon: SiSqlite, color: '#003B57' },
-  { name: 'Firebase', icon: SiFirebase, color: '#FFCA28' },
-
-  // AI & Data
-  { name: 'Python', icon: FaPython, color: '#3776AB' },
-  { name: 'PyTorch & AI', icon: SiPytorch, color: '#EE4C2C' },
-
-  // DevOps & Cloud
-  { name: 'Google Cloud', icon: SiGooglecloud, color: '#4285F4' },
-  { name: 'Git', icon: FaGitAlt, color: '#F05032' },
-
-  // Systems & Security
-  { name: 'C / C++', icon: HiCode, color: '#00599C' },
-  { name: 'Kali Linux', icon: FaLinux, color: '#557C94' },
-  { name: 'Cyber Security', icon: HiShieldCheck, color: '#2e8b57' },
+const skillGroups = [
+  {
+    label: 'Languages',
+    accent: '#f7df1e',
+    skills: [
+      { name: 'Python', icon: FaPython, color: '#3776AB' },
+      { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
+      { name: 'JavaScript', icon: FaJs, color: '#f7df1e' },
+      { name: 'Dart', icon: SiDart, color: '#0175C2' },
+      { name: 'C / C++', icon: HiCode, color: '#00599C' },
+    ],
+  },
+  {
+    label: 'Frontend & Mobile',
+    accent: '#61DAFB',
+    skills: [
+      { name: 'React', icon: FaReact, color: '#61DAFB' },
+      { name: 'Vite', icon: SiVite, color: '#646CFF' },
+      { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#06B6D4' },
+      { name: 'Flutter', icon: SiFlutter, color: '#02569B' },
+      { name: 'HTML & CSS', icon: FaHtml5, color: '#e34f26' },
+    ],
+  },
+  {
+    label: 'Backend & Databases',
+    accent: '#339933',
+    skills: [
+      { name: 'Node.js', icon: FaNodeJs, color: '#339933' },
+      { name: 'Flask', icon: SiFlask, color: '#ffffff' },
+      { name: 'SQLite', icon: SiSqlite, color: '#003B57' },
+      { name: 'Firebase', icon: SiFirebase, color: '#FFCA28' },
+    ],
+  },
+  {
+    label: 'AI & Security',
+    accent: '#2e8b57',
+    skills: [
+      { name: 'PyTorch', icon: SiPytorch, color: '#EE4C2C' },
+      { name: 'Kali Linux', icon: FaLinux, color: '#557C94' },
+      { name: 'Cyber Security', icon: HiShieldCheck, color: '#2e8b57' },
+      { name: 'Google Cloud', icon: SiGooglecloud, color: '#4285F4' },
+      { name: 'Git', icon: FaGitAlt, color: '#F05032' },
+    ],
+  },
 ]
+
+const totalSkills = skillGroups.reduce((sum, g) => sum + g.skills.length, 0)
 
 export const crackPatterns = [
   // Pattern 0
@@ -159,39 +174,52 @@ export default function Skills() {
         className="relative z-10 w-full max-w-7xl mx-auto flex flex-col h-full overflow-y-auto pt-14 md:pt-16 pb-4"
         data-lenis-prevent="true"
       >
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-4 md:mb-8 gap-2 flex-shrink-0">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-3 md:mb-6 gap-2 flex-shrink-0">
           <h2 className="text-3xl md:text-6xl font-bold text-[var(--text-primary)] uppercase tracking-tighter" id="skills">
             Tech <span className="text-teal-400">Stack</span>
           </h2>
-          <span className="text-[10px] md:text-xs text-[var(--text-secondary)] uppercase tracking-widest">{skillsData.length} Technologies</span>
+          <span className="text-[10px] md:text-xs text-[var(--text-secondary)] uppercase tracking-widest">{totalSkills}+ Technologies</span>
         </div>
         
         <motion.div 
-          className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-6 gap-2 md:gap-4 px-0 md:px-4"
+          className="flex flex-col gap-3 md:gap-5"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {skillsData.map((skill, idx) => (
-            <motion.div 
-              key={skill.name}
-              variants={itemVariants}
-              whileHover={{ y: -6, scale: 1.05, transition: { duration: 0.2 } }}
-              className="glass-card relative flex flex-col items-center justify-center p-2 sm:p-3 md:p-6 border border-[var(--glass-border)] bg-[var(--glass-bg)] backdrop-blur-md group overflow-hidden cursor-pointer h-[70px] sm:h-[80px] md:h-auto"
-              style={{
-                 borderRadius: idx % 3 === 0 ? '1rem 0.25rem' : idx % 3 === 1 ? '0.25rem 1rem' : '0.75rem',
-              }}
-            >
-              {/* Hover glow */}
-              <div 
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
-                style={{ background: `radial-gradient(circle at center, ${skill.color}15, transparent 70%)` }} 
-              />
-              <skill.icon className="text-xl sm:text-2xl md:text-4xl mb-1 md:mb-3 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 relative z-10" style={{ color: skill.color }} />
-              <span className="font-sans font-bold tracking-wider text-[7px] sm:text-[8px] md:text-[11px] uppercase text-[var(--text-primary)] opacity-60 group-hover:opacity-100 transition-opacity relative z-10 text-center leading-tight">
-                {skill.name}
-              </span>
-            </motion.div>
+          {skillGroups.map((group) => (
+            <div key={group.label}>
+              {/* Group label */}
+              <div className="flex items-center gap-2 mb-1.5 md:mb-2.5">
+                <span className="text-[9px] md:text-xs font-bold uppercase tracking-[2px] md:tracking-[3px]" style={{ color: group.accent }}>
+                  {group.label}
+                </span>
+                <div className="flex-1 h-px bg-[var(--glass-border)]"></div>
+              </div>
+              {/* Group skills */}
+              <div className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-6 gap-2 md:gap-3">
+                {group.skills.map((skill, idx) => (
+                  <motion.div 
+                    key={skill.name}
+                    variants={itemVariants}
+                    whileHover={{ y: -5, scale: 1.05, transition: { duration: 0.2 } }}
+                    className="glass-card relative flex flex-col items-center justify-center p-2 sm:p-3 md:p-4 border border-[var(--glass-border)] bg-[var(--glass-bg)] backdrop-blur-md group overflow-hidden cursor-pointer h-[64px] sm:h-[72px] md:h-[90px]"
+                    style={{
+                       borderRadius: idx % 3 === 0 ? '0.9rem 0.25rem' : idx % 3 === 1 ? '0.25rem 0.9rem' : '0.6rem',
+                    }}
+                  >
+                    <div 
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
+                      style={{ background: `radial-gradient(circle at center, ${skill.color}15, transparent 70%)` }} 
+                    />
+                    <skill.icon className="text-lg sm:text-xl md:text-3xl mb-1 md:mb-2 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 relative z-10" style={{ color: skill.color }} />
+                    <span className="font-sans font-bold tracking-wider text-[7px] sm:text-[8px] md:text-[10px] uppercase text-[var(--text-primary)] opacity-60 group-hover:opacity-100 transition-opacity relative z-10 text-center leading-tight">
+                      {skill.name}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           ))}
         </motion.div>
       </div>
