@@ -8,6 +8,7 @@ import ProgressBar from './components/ProgressBar'
 import KeyboardHint from './components/KeyboardHint'
 import CommandPalette from './components/CommandPalette'
 import Terminal from './components/Terminal'
+import ResumeViewer from './components/ResumeViewer'
 import Hero from './sections/Hero'
 import About from './sections/About'
 import Skills from './sections/Skills'
@@ -46,6 +47,7 @@ function getInitialIndex() {
 function App() {
   const [cmdPaletteOpen, setCmdPaletteOpen] = useState(false)
   const [terminalOpen, setTerminalOpen] = useState(false)
+  const [resumeOpen, setResumeOpen] = useState(false)
   const [theme, setTheme] = useState(() => {
     try { return localStorage.getItem('portfolio-theme') || 'dark' } catch { return 'dark' }
   })
@@ -196,7 +198,7 @@ function App() {
       <div className="h-[100dvh] w-full relative">
         {sections.map((Section, i) => (
           <ShatterSection key={i} index={i} activeIndex={activeIndex}>
-            <Section />
+            <Section {...(i === 0 ? { onViewResume: () => setResumeOpen(true) } : {})} />
           </ShatterSection>
         ))}
       </div>
@@ -211,6 +213,7 @@ function App() {
         onOpenTerminal={() => { setCmdPaletteOpen(false); setTerminalOpen(true) }}
       />
       <Terminal isOpen={terminalOpen} onClose={() => setTerminalOpen(false)} />
+      <ResumeViewer isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />
     </div>
   )
 }

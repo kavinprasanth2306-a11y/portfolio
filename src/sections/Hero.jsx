@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
 import { HiEye } from 'react-icons/hi'
 import { motion } from 'framer-motion'
 
-export default function Hero() {
+export default function Hero({ onViewResume }) {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center relative p-4 md:p-8">
       
@@ -82,13 +82,11 @@ export default function Hero() {
             className="px-6 py-3 md:px-10 md:py-5 rounded-full bg-[var(--text-primary)] text-[var(--bg-primary)] font-bold text-xs md:text-sm uppercase tracking-wider hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all duration-300">
             Explore Work
           </button>
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={onViewResume}
             className="px-6 py-3 md:px-10 md:py-5 rounded-full border border-[var(--glass-border)] bg-[var(--glass-bg)] text-[var(--text-primary)] font-bold text-xs md:text-sm uppercase tracking-wider hover:scale-105 hover:border-cyan-400 transition-all duration-300 flex items-center gap-2">
-            <HiDownload /> Resume
-          </a>
+            <HiEye /> View Resume
+          </button>
           <div className="flex gap-3 md:gap-4">
             <a href="https://github.com/kavinprasanth2306-a11y" target="_blank" rel="noopener noreferrer"
               aria-label="GitHub profile"
